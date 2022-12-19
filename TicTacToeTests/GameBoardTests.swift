@@ -44,11 +44,14 @@ final class GameBoardTests: XCTestCase {
         let sut = GameBoard()
 
         sut.play(.x, on: .init(x:0, y:1))
+        sut.play(.o, on: .init(x:1, y:1))
+        sut.play(.x, on: .init(x:2, y:1))
+        sut.play(.o, on: .init(x:0, y:2))
 
         XCTAssertEqual(sut.board, [
             nil, nil, nil,  //
-             .x, nil, nil,
-            nil, nil, nil
+             .x,  .o,  .x,
+             .o, nil, nil
         ])
     }
 
