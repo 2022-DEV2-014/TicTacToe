@@ -4,15 +4,22 @@
 import XCTest
 
 class GameBoard {
+//    typealias Coordinates = (x: Int, y: Int)
     // For now let's consider the board as an array of optional players
-    private var board: [Player?] = .init(repeating: nil, count: 9)
+    private(set) var board: [Player?] = .init(repeating: nil, count: 9)
 
     var isEmpty: Bool {
         board.filter { $0 != nil }.isEmpty
     }
 
-    func play(_ player: Player) {
-        board.insert(player, at: 0)
+    func play(_ player: Player, on coordinate: CGPoint) {
+        let width: Int = 3
+        let col = Int(coordinate.x)
+        let row = Int(coordinate.y)
+
+        let position = width * row + col
+
+        board[position] = player
     }
 
 }
@@ -28,9 +35,21 @@ final class GameBoardTests: XCTestCase {
     func test_aPlayersTurn_isStoredInTheBoard() {
         let sut = GameBoard()
 
-        sut.play(.x)
+        sut.play(.x, on: .init(x:0, y:1))
 
         XCTAssertFalse(sut.isEmpty)
+    }
+
+    func test_aPlayersTurn_isStoredInTheRightPosition() {
+        let sut = GameBoard()
+
+        sut.play(.x, on: .init(x:0, y:1))
+
+        XCTAssertEqual(sut.board, [
+            nil, nil, nil,  //
+             .x, nil, nil,
+            nil, nil, nil
+        ])
     }
 
 }
