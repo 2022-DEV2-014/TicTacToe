@@ -5,14 +5,22 @@ import XCTest
 @testable import TicTacToe
 
 class Game {
-    enum Player {
-        case x, o
-    }
-
-    // For now let's consider the board as an array of optional players
-    var board: [Player?] = .init(repeating: nil, count: 9)
+    let board = GameBoard()
 
     var currentPlayer: Player = .x
+}
+
+enum Player {
+    case x, o
+}
+
+class GameBoard {
+    // For now let's consider the board as an array of optional players
+    private let board: [Player?] = .init(repeating: nil, count: 9)
+
+    var isEmpty: Bool {
+        board.filter { $0 != nil }.isEmpty
+    }
 }
 
 final class TicTacToeTests: XCTestCase {
@@ -26,7 +34,7 @@ final class TicTacToeTests: XCTestCase {
     func test_board_startsEmpty() {
         let sut = Game()
 
-        XCTAssertTrue(sut.board.compactMap { $0 }.isEmpty)
+        XCTAssertTrue(sut.board.isEmpty)
     }
 
 }
