@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5B4DBF322951058700FF6CD7 /* GameBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF312951058700FF6CD7 /* GameBoardTests.swift */; };
 		5B76FA022950F8C200E3607C /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; };
 		5B76FA072950F8C200E3607C /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76FA062950F8C200E3607C /* TicTacToeTests.swift */; };
 		5B76FA082950F8C200E3607C /* TicTacToe.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B76F9FC2950F8C200E3607C /* TicTacToe.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -23,6 +24,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5B4DBF312951058700FF6CD7 /* GameBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardTests.swift; sourceTree = "<group>"; };
 		5B76F9F92950F8C200E3607C /* TicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B76F9FC2950F8C200E3607C /* TicTacToe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicTacToe.h; sourceTree = "<group>"; };
 		5B76FA012950F8C200E3607C /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				5B76FA062950F8C200E3607C /* TicTacToeTests.swift */,
+				5B4DBF312951058700FF6CD7 /* GameBoardTests.swift */,
 			);
 			path = TicTacToeTests;
 			sourceTree = "<group>";
@@ -198,6 +201,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B4DBF322951058700FF6CD7 /* GameBoardTests.swift in Sources */,
 				5B76FA072950F8C200E3607C /* TicTacToeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

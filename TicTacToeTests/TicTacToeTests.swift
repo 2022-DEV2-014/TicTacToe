@@ -14,27 +14,11 @@ enum Player {
     case x, o
 }
 
-class GameBoard {
-    // For now let's consider the board as an array of optional players
-    private let board: [Player?] = .init(repeating: nil, count: 9)
-
-    var isEmpty: Bool {
-        board.filter { $0 != nil }.isEmpty
-    }
-}
-
-final class TicTacToeTests: XCTestCase {
+final class GameTests: XCTestCase {
 
     func test_playerX_alwaysGoesFirst() {
         let sut = Game()
 
         XCTAssertEqual(sut.currentPlayer, .x)
     }
-
-    func test_board_startsEmpty() {
-        let sut = Game()
-
-        XCTAssertTrue(sut.board.isEmpty)
-    }
-
 }
