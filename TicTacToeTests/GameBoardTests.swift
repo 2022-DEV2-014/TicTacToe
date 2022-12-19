@@ -5,11 +5,16 @@ import XCTest
 
 class GameBoard {
     // For now let's consider the board as an array of optional players
-    private let board: [Player?] = .init(repeating: nil, count: 9)
+    private var board: [Player?] = .init(repeating: nil, count: 9)
 
     var isEmpty: Bool {
         board.filter { $0 != nil }.isEmpty
     }
+
+    func play(_ player: Player) {
+        board.insert(player, at: 0)
+    }
+
 }
 
 final class GameBoardTests: XCTestCase {
@@ -18,6 +23,14 @@ final class GameBoardTests: XCTestCase {
         let sut = GameBoard()
 
         XCTAssertTrue(sut.isEmpty)
+    }
+
+    func test_aPlayersTurn_isStoredInTheBoard() {
+        let sut = GameBoard()
+
+        sut.play(.x)
+
+        XCTAssertFalse(sut.isEmpty)
     }
 
 }
