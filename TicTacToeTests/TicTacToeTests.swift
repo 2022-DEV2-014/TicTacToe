@@ -7,12 +7,18 @@ import XCTest
 class Game {
     enum State {
         case ready
+        case onGoing
     }
 
     let board = GameBoard()
 
     var currentPlayer: Player = .x
     var currentState: State = .ready
+
+    func play(at position: CGPoint) {
+        currentState = .onGoing
+    }
+
 }
 
 enum Player {
@@ -31,5 +37,13 @@ final class GameTests: XCTestCase {
         let sut = Game()
 
         XCTAssertEqual(sut.currentState, .ready)
+    }
+
+    func test_gameStateIsOnGoing_whenStarted() {
+        let sut = Game()
+
+        sut.play(at: .init(x: 0, y: 0))
+
+        XCTAssertEqual(sut.currentState, .onGoing)
     }
 }
