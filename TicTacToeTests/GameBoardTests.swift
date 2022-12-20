@@ -4,12 +4,15 @@
 import XCTest
 
 class GameBoard {
-//    typealias Coordinates = (x: Int, y: Int)
     // For now let's consider the board as an array of optional players
     private(set) var board: [Player?] = .init(repeating: nil, count: 9)
 
     var isEmpty: Bool {
         board.filter { $0 != nil }.isEmpty
+    }
+
+    var winner: Player? {
+        return nil
     }
 
     func play(_ player: Player, on coordinate: CGPoint) {
@@ -25,6 +28,8 @@ class GameBoard {
         
         board[position] = player
     }
+
+
 
 }
 
@@ -70,6 +75,16 @@ final class GameBoardTests: XCTestCase {
              .x, nil, nil,
             nil, nil, nil
         ])
+    }
+
+    func test_anOngoingGame_hasNoWinner() {
+        let sut = GameBoard()
+
+        sut.play(.x, on: .init(x:0, y:0))
+        sut.play(.o, on: .init(x:1, y:0))
+        sut.play(.x, on: .init(x:2, y:0))
+
+        XCTAssertEqual(sut.winner, nil)
     }
 
 }
