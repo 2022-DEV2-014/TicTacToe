@@ -17,6 +17,7 @@ class Game {
 
     func play(at position: CGPoint) {
         currentState = .onGoing
+        currentPlayer = currentPlayer == .x ? .o : .x
     }
 
 }
@@ -45,5 +46,17 @@ final class GameTests: XCTestCase {
         sut.play(at: .init(x: 0, y: 0))
 
         XCTAssertEqual(sut.currentState, .onGoing)
+    }
+
+    func test_playerToggles_afterEachPlay() {
+        let sut = Game()
+
+        sut.play(at: .init(x: 0, y: 0))
+
+        XCTAssertEqual(sut.currentPlayer, .o)
+
+        sut.play(at: .init(x: 0, y: 0))
+
+        XCTAssertEqual(sut.currentPlayer, .x)
     }
 }
