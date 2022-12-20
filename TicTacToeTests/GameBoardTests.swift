@@ -19,6 +19,10 @@ class GameBoard {
 
         let position = width * row + col
 
+        guard board[position] == nil else {
+            return
+        }
+        
         board[position] = player
     }
 
@@ -49,9 +53,22 @@ final class GameBoardTests: XCTestCase {
         sut.play(.o, on: .init(x:0, y:2))
 
         XCTAssertEqual(sut.board, [
-            nil, nil, nil,  //
+            nil, nil, nil,
              .x,  .o,  .x,
              .o, nil, nil
+        ])
+    }
+
+    func test_aPlayersTurn_cantBePlacedInAnAlreadyUsedPosition() {
+        let sut = GameBoard()
+
+        sut.play(.x, on: .init(x:0, y:1))
+        sut.play(.o, on: .init(x:0, y:1))
+
+        XCTAssertEqual(sut.board, [
+            nil, nil, nil,
+             .x, nil, nil,
+            nil, nil, nil
         ])
     }
 
