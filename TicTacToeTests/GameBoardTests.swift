@@ -12,21 +12,21 @@ final class GameBoardTests: XCTestCase {
         XCTAssertTrue(sut.isEmpty)
     }
 
-    func test_aPlayersTurn_isStoredInTheBoard() {
+    func test_aPlayersTurn_isStoredInTheBoard() throws {
         let sut = GameBoard()
 
-        sut.play(.x, on: (row: 0, col: 1))
+        try sut.play(.x, on: (row: 0, col: 1))
 
         XCTAssertFalse(sut.isEmpty)
     }
 
-    func test_aPlayersTurn_isStoredInTheRightPosition() {
+    func test_aPlayersTurn_isStoredInTheRightPosition() throws {
         let sut = GameBoard()
 
-        sut.play(.x, on: (row: 1, col: 0))
-        sut.play(.o, on: (row: 1, col: 1))
-        sut.play(.x, on: (row: 1, col: 2))
-        sut.play(.o, on: (row: 2, col: 0))
+        try sut.play(.x, on: (row: 1, col: 0))
+        try sut.play(.o, on: (row: 1, col: 1))
+        try sut.play(.x, on: (row: 1, col: 2))
+        try sut.play(.o, on: (row: 2, col: 0))
 
         XCTAssertEqual(sut.board, [
             nil, nil, nil,
@@ -35,12 +35,12 @@ final class GameBoardTests: XCTestCase {
         ])
     }
 
-    func test_aPlayersTurn_cantBePlacedInAnAlreadyUsedPosition() {
+    func test_aPlayersTurn_cantBePlacedInAnAlreadyUsedPosition() throws {
         let sut = GameBoard()
 
-        sut.play(.x, on: (row: 1, col: 0))
-        sut.play(.o, on: (row: 1, col: 0))
+        try sut.play(.x, on: (row: 1, col: 0))
 
+        XCTAssertThrowsError(try sut.play(.o, on: (row: 1, col: 0)), "A duplicated move should be detected")
         XCTAssertEqual(sut.board, [
             nil, nil, nil,
             .x, nil, nil,

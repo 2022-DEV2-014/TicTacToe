@@ -50,7 +50,7 @@ class Game {
         guard !currentState.isEnded else {
             throw ErrorState.movementIsBlockedAsGameIsEnded
         }
-        board.play(currentPlayer, on: position)
+        try board.play(currentPlayer, on: position)
         currentPlayer = currentPlayer == .x ? .o : .x
     }
 }

@@ -26,7 +26,20 @@ final class GameTests: XCTestCase {
         XCTAssertEqual(sut.currentState, .onGoing)
     }
 
+
     func test_playerToggles_afterEachPlay() {
+        let sut = Game()
+
+        try? sut.play(at: (row: 0, col: 0))
+
+        XCTAssertEqual(sut.currentPlayer, .o)
+
+        try? sut.play(at: (row: 1, col: 0))
+
+        XCTAssertEqual(sut.currentPlayer, .x)
+    }
+
+    func test_playerDoesNotToggle_afterAnAttemptToPlayOnAnAlreadyOccupiedPosition() {
         let sut = Game()
 
         try? sut.play(at: (row: 0, col: 0))
@@ -35,7 +48,7 @@ final class GameTests: XCTestCase {
 
         try? sut.play(at: (row: 0, col: 0))
 
-        XCTAssertEqual(sut.currentPlayer, .x)
+        XCTAssertEqual(sut.currentPlayer, .o)
     }
 
     func test_gameIsDraw_whenAllPlacesAreOccupiedAndTheresNoWinner() {

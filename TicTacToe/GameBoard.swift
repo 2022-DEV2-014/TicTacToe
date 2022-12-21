@@ -6,6 +6,10 @@ import Foundation
 class GameBoard {
     typealias Position = (row: Int, col: Int)
 
+    enum ErrorStates: Error {
+        case duplicatedMove
+    }
+
     private let allWinningPositions = [
         //Horizontal
         [(row: 0, col: 0), (row: 0, col: 1), (row: 0, col: 2)],
@@ -39,11 +43,11 @@ class GameBoard {
             .first
     }
 
-    func play(_ player: Player, on coordinate: Position) {
+    func play(_ player: Player, on coordinate: Position) throws {
         let position = positionInArray(for: coordinate)
 
         guard board[position] == nil else {
-            return
+            throw ErrorStates.duplicatedMove
         }
 
         board[position] = player
