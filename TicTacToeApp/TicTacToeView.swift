@@ -16,7 +16,7 @@ struct TicTacToeView: View {
                     ForEach(0..<3, id: \.self) { col in
                         ZStack {
                             Circle()
-                                .fill(self.game.game.board.player(at: (row, col)) == "x" ? Color.red : self.game.game.board.player(at: (row, col)) == "o" ? Color.green : Color.blue)
+                                .fill(self.squareColor(at: (row, col)))
                                 .frame(width: 100, height: 100)
                                 .scaleEffect(buttonStates[row * 3 + col] ? 1.1 : 1)
                                 .onTapGesture {
@@ -45,7 +45,7 @@ struct TicTacToeView: View {
                                     }
                                 }
 
-                            Text(self.game.game.board.player(at: (row, col)) == "x" ? "X" : self.game.game.board.player(at: (row, col)) == "o" ? "O" : "" )
+                            Text(playerToken(at: (row, col)))
                                 .font(.system(size: 60))
                                 .foregroundColor(.white)
                                 .frame(width: 100, height: 100)
@@ -56,5 +56,35 @@ struct TicTacToeView: View {
 
             Text(game.game.currentState.description)
         }.id(refreshTrigger)
+    }
+}
+
+extension TicTacToeView {
+    func squareColor(at position: (row: Int, col: Int)) -> Color {
+        let player = self.game.game.board.player(at: position)
+
+        if player == "x" {
+            return .red
+        }
+
+        if player == "o" {
+            return .green
+        }
+
+        return .blue
+    }
+
+    func playerToken(at position: (row: Int, col: Int)) -> String {
+        let player = self.game.game.board.player(at: position)
+
+        if player == "x" {
+            return "X"
+        }
+
+        if player == "o" {
+            return "O"
+        }
+
+        return ""
     }
 }
