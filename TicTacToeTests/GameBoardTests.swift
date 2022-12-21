@@ -4,25 +4,21 @@
 import XCTest
 
 class GameBoard {
-    private let baseWinningPositions = [
+    private let allWinningPositions = [
+        //Horizontal
         [(0,0), (0,1), (0,2)],
         [(1,0), (1,1), (1,2)],
         [(2,0), (2,1), (2,2)],
+
+        //Vertical
+        [(0,0), (1,0), (2,0)],
+        [(0,1), (1,1), (2,1)],
+        [(0,2), (1,2), (2,2)],
+
+        //Diagonal
         [(0,0), (1,1), (2,2)],
         [(0,2), (1,1), (2,0)]
     ]
-
-    // This will evaluate 2 duplicated conditions, evaluating diagonals 4 times. 
-    private lazy var allWinningPositions: [[(Int, Int)]] = {
-        baseWinningPositions
-            .reduce([[(Int, Int)]]()) { partialResult, winPosition in
-                return partialResult + [
-                    winPosition.map { ($0.0, $0.1) }
-                ] + [
-                    winPosition.map { ($0.1, $0.0) }
-                ]
-            }
-    }()
 
     private lazy var winningPositionsInPoint: [[(CGPoint)]] = {
         allWinningPositions
