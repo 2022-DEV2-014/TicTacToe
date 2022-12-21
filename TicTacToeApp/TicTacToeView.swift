@@ -3,20 +3,31 @@
 
 import SwiftUI
 
-struct ContentView: View {
+// Created in pair with chat.openai.com
+struct TicTacToeView: View {
+    @ObservedObject var game = ObservableGame()
+    @State var refreshTrigger = false
+
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
-        }
-        .padding()
-    }
-}
+            ForEach(0..<3, id: \.self) { row in
+                HStack {
+                    ForEach(0..<3, id: \.self) { col in
+                        Button(action: {
+                            do {
+                                try self.game.play(at: (row, col))
+                                refreshTrigger.toggle()
+                            } catch {
+                                print(error)
+                            }
+                        }) {
+                            Text(self.game.game.board.player(at: (row, col)))
+                        }
+                    }
+                }
+            }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+            Text(game.game.currentState.description)
+        }.id(refreshTrigger)
     }
 }
