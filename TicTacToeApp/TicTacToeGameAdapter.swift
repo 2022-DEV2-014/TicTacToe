@@ -79,7 +79,7 @@ extension Token {
     }
 }
 
-extension Player {
+private extension Player {
     var token: String {
         switch self {
         case .x: return "X"
@@ -88,7 +88,7 @@ extension Player {
     }
 }
 
-extension Game.ErrorState {
+private extension Game.ErrorState {
     var description: String {
         switch self {
         case .movementIsBlockedAsGameIsEnded:
@@ -97,7 +97,7 @@ extension Game.ErrorState {
     }
 }
 
-extension GameBoard.ErrorStates {
+private extension GameBoard.ErrorStates {
     var description: String {
         switch self {
         case .duplicatedMove:
