@@ -49,109 +49,111 @@ final class GameBoardTests: XCTestCase {
     }
 
     func test_anOngoingGame_hasNoWinner() {
-        let sut = GameBoard()
-
-        sut.play(.x, on: (row: 0, col: 0))
-        sut.play(.o, on: (row: 0, col: 1))
-        sut.play(.x, on: (row: 0, col: 2))
+        let sut = GameBoard(boardRepresentation:
+        """
+            x, o, x,
+            _, _, _,
+            _, _, _
+        """)
 
         XCTAssertEqual(sut.winner, nil)
     }
 
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInFirstRow() {
-        let sut = GameBoard()
-
-        sut.play(.x, on: (row: 0, col: 0))
-        sut.play(.x, on: (row: 0, col: 1))
-        sut.play(.x, on: (row: 0, col: 2))
+        let sut = GameBoard(boardRepresentation:
+        """
+            x, x, x,
+            _, _, _,
+            _, _, _
+        """)
 
         XCTAssertEqual(sut.winner, .x)
     }
 
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInTheMiddleRow() {
-        let sut = GameBoard()
-
-        sut.play(.x, on: (row: 1, col: 0))
-        sut.play(.x, on: (row: 1, col: 1))
-        sut.play(.x, on: (row: 1, col: 2))
+        let sut = GameBoard(boardRepresentation:
+        """
+            _, _, _,
+            x, x, x,
+            _, _, _
+        """)
 
         XCTAssertEqual(sut.winner, .x)
     }
 
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInLastRow() {
-        let sut = GameBoard()
-
-        sut.play(.o, on: (row: 2, col: 0))
-        sut.play(.o, on: (row: 2, col: 1))
-        sut.play(.o, on: (row: 2, col: 2))
+        let sut = GameBoard(boardRepresentation:
+        """
+            _, _, _,
+            _, _, _,
+            o, o, o
+        """)
 
         XCTAssertEqual(sut.winner, .o)
     }
 
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInFirstColumn() {
-        let sut = GameBoard()
-
-        sut.play(.x, on: (row: 0, col: 0))
-        sut.play(.x, on: (row: 1, col: 0))
-        sut.play(.x, on: (row: 2, col: 0))
+        let sut = GameBoard(boardRepresentation:
+        """
+            x, _, _,
+            x, _, _,
+            x, _, _
+        """)
 
         XCTAssertEqual(sut.winner, .x)
     }
 
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInTheMiddleColumn() {
-        let sut = GameBoard()
-
-        sut.play(.x, on: (row: 0, col: 1))
-        sut.play(.x, on: (row: 1, col: 1))
-        sut.play(.x, on: (row: 2, col: 1))
+        let sut = GameBoard(boardRepresentation:
+        """
+            _, x, _,
+            _, x, _,
+            _, x, _
+        """)
 
         XCTAssertEqual(sut.winner, .x)
     }
 
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInLastColumn() {
-        let sut = GameBoard()
-
-        sut.play(.o, on: (row: 0, col: 2))
-        sut.play(.o, on: (row: 1, col: 2))
-        sut.play(.o, on: (row: 2, col: 2))
+        let sut = GameBoard(boardRepresentation:
+        """
+            _, _, o,
+            _, _, o,
+            _, _, o
+        """)
 
         XCTAssertEqual(sut.winner, .o)
     }
 
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInDiagonalStartingAtFirstPositionInTheBoard() {
-        let sut = GameBoard()
-
-        sut.play(.o, on: (row: 0, col: 0))
-        sut.play(.o, on: (row: 1, col: 1))
-        sut.play(.o, on: (row: 2, col: 2))
+        let sut = GameBoard(boardRepresentation:
+        """
+            o, _, _,
+            _, o, _,
+            _, _, o
+        """)
 
         XCTAssertEqual(sut.winner, .o)
     }
 
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInDiagonalStartingAtLastColumnFirstRowInTheBoard() {
-        let sut = GameBoard()
-
-        sut.play(.o, on: (row: 0, col: 2))
-        sut.play(.o, on: (row: 1, col: 1))
-        sut.play(.o, on: (row: 2, col: 0))
+        let sut = GameBoard(boardRepresentation:
+        """
+            o, o, o,
+            _, _, _,
+            _, _, _
+        """)
 
         XCTAssertEqual(sut.winner, .o)
     }
 
     func test_aFullBoard_isAchievedWhenAllPlacesAreOccupied() {
-        let sut = GameBoard()
-
-        sut.play(.o, on: (row: 0, col: 0))
-        sut.play(.x, on: (row: 0, col: 1))
-        sut.play(.x, on: (row: 0, col: 2))
-
-        sut.play(.x, on: (row: 1, col: 0))
-        sut.play(.o, on: (row: 1, col: 1))
-        sut.play(.o, on: (row: 1, col: 2))
-
-        sut.play(.x, on: (row: 2, col: 0))
-        sut.play(.o, on: (row: 2, col: 1))
-        sut.play(.x, on: (row: 2, col: 2))
+        let sut = GameBoard(boardRepresentation:
+        """
+            o, x, x,
+            x, o, o,
+            x, o, x
+        """)
 
         XCTAssertEqual(sut.winner, nil)
         XCTAssertTrue(sut.isFull)
