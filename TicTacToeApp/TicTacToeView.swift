@@ -6,7 +6,6 @@ import SwiftUI
 // Created in pair with chat.openai.com
 struct TicTacToeView: View {
     @ObservedObject var game = ObservableGame()
-    @State var refreshTrigger = false
     @State var buttonStates: [Bool] = Array(repeating: false, count: 9)
     @State var showingError = false
     @State var errorMessage = ""
@@ -32,27 +31,25 @@ struct TicTacToeView: View {
                     }
                 }
             }
-
-            Text(game.game.currentState.description)
+            Label(game.status, systemImage: "gamecontroller")
+                .font(.title)
+                .foregroundColor(.white)
+                .multilineTextAlignment(.center)
+                .padding()
         }
-        .id(refreshTrigger)
         .alert(isPresented: $showingError) {
             Alert(title: Text("Move not allowed"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }
     }
 }
 
-
-
 extension TicTacToeView {
     func squareColor(at position: (row: Int, col: Int)) -> Color {
-        self.game.game.board.player(at: position)?
-            .squareColor ?? .blue
+        self.game.token(at: position).squareColor
     }
 
     func playerToken(at position: (row: Int, col: Int)) -> String {
-        self.game.game.board.player(at: position)?
-            .token ?? ""
+        self.game.token(at: position).rawValue
     }
 
     func onButtonPressed(at position: (row: Int, col: Int)) {
