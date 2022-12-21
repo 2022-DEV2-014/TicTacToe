@@ -29,6 +29,10 @@ class GameBoard {
         board.filter { $0 != nil }.isEmpty
     }
 
+    var isFull: Bool {
+        board.filter { $0 == nil }.isEmpty
+    }
+
     var winner: Player? {
         return allWinningPositions
             .compactMap(winner(at:))
@@ -201,6 +205,25 @@ final class GameBoardTests: XCTestCase {
         sut.play(.o, on: (row: 2, col: 0))
 
         XCTAssertEqual(sut.winner, .o)
+    }
+
+    func test_aFullBoard_isAchievedWhenAllPlacesAreOccupied() {
+        let sut = GameBoard()
+
+        sut.play(.o, on: (row: 0, col: 0))
+        sut.play(.x, on: (row: 0, col: 1))
+        sut.play(.x, on: (row: 0, col: 2))
+
+        sut.play(.x, on: (row: 1, col: 0))
+        sut.play(.o, on: (row: 1, col: 1))
+        sut.play(.o, on: (row: 1, col: 2))
+
+        sut.play(.x, on: (row: 2, col: 0))
+        sut.play(.o, on: (row: 2, col: 1))
+        sut.play(.x, on: (row: 2, col: 2))
+
+        XCTAssertEqual(sut.winner, nil)
+        XCTAssertTrue(sut.isFull)
     }
 
 }
