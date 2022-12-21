@@ -139,9 +139,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInDiagonalStartingAtLastColumnFirstRowInTheBoard() {
         let sut = GameBoard(boardRepresentation:
         """
-            o, o, o,
-            _, _, _,
-            _, _, _
+            _, _, o,
+            _, o, _,
+            o, _, _
         """)
 
         XCTAssertEqual(sut.winner, .o)
