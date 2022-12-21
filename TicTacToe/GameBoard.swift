@@ -4,7 +4,7 @@
 import Foundation
 
 class GameBoard {
-    typealias BoardPosition = (row: Int, col: Int)
+    typealias Position = (row: Int, col: Int)
 
     private let allWinningPositions = [
         //Horizontal
@@ -39,7 +39,7 @@ class GameBoard {
             .first
     }
 
-    func play(_ player: Player, on coordinate: BoardPosition) {
+    func play(_ player: Player, on coordinate: Position) {
         let position = positionInArray(for: coordinate)
 
         guard board[position] == nil else {
@@ -50,7 +50,7 @@ class GameBoard {
     }
 
 
-    private func winner(at position: [BoardPosition]) -> Player? {
+    private func winner(at position: [Position]) -> Player? {
         let movesInPosition = position
             .map(positionInArray)
             .compactMap { board[$0] }
@@ -66,7 +66,7 @@ class GameBoard {
         return firstPlayer
     }
 
-    private func positionInArray(for position: BoardPosition) -> Int {
+    private func positionInArray(for position: Position) -> Int {
         let width: Int = 3
         return width * position.row + position.col
     }

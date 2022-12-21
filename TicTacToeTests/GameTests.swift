@@ -21,7 +21,7 @@ final class GameTests: XCTestCase {
     func test_gameStateIsOnGoing_whenStarted() {
         let sut = Game()
 
-        sut.play(at: .init(x: 0, y: 0))
+        sut.play(at: (row: 0, col: 0))
 
         XCTAssertEqual(sut.currentState, .onGoing)
     }
@@ -29,14 +29,14 @@ final class GameTests: XCTestCase {
     func test_playerToggles_afterEachPlay() {
         let sut = Game()
 
-        sut.play(at: .init(x: 0, y: 0))
+        sut.play(at: (row: 0, col: 0))
 
         XCTAssertEqual(sut.currentPlayer, .o)
 
-        sut.play(at: .init(x: 0, y: 0))
+        sut.play(at: (row: 0, col: 0))
 
         XCTAssertEqual(sut.currentPlayer, .x)
     }
 
-    
+
 }

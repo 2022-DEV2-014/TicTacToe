@@ -11,15 +11,20 @@ class Game {
 
     private let board: GameBoard
     private(set) var currentPlayer: Player = .x
-    private(set) var currentState: State = .ready
+    var currentState: State {
+        if board.isEmpty {
+            return .ready
+        }
+        return .onGoing
+    }
 
 
     init(board: GameBoard = .init()) {
         self.board = board
     }
 
-    func play(at position: CGPoint) {
-        currentState = .onGoing
+    func play(at position: GameBoard.Position) {
+        board.play(currentPlayer, on: position)
         currentPlayer = currentPlayer == .x ? .o : .x
     }
 }
