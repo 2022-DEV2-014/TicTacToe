@@ -12,13 +12,31 @@ class GameBoard {
     }
 
     var winner: Player? {
-        let horizontalWinningPositions: [CGPoint] = [
-            .init(row: 0, col: 0),
-            .init(row: 0, col: 1),
-            .init(row: 0, col: 2)
+        let horizontalWinningPositions: [[CGPoint]] = [
+            [
+                .init(row: 0, col: 0),
+                .init(row: 0, col: 1),
+                .init(row: 0, col: 2)
+            ],
+            [
+                .init(row: 1, col: 0),
+                .init(row: 1, col: 1),
+                .init(row: 1, col: 2)
+            ],
+            [
+                .init(row: 2, col: 0),
+                .init(row: 2, col: 1),
+                .init(row: 2, col: 2)
+            ]
         ]
 
-        let movesInPosition = horizontalWinningPositions
+        return horizontalWinningPositions
+            .compactMap(winner(at:))
+            .first
+    }
+
+    private func winner(at position: [CGPoint]) -> Player? {
+        let movesInPosition = position
             .map(\.positionInArray)
             .compactMap { board[$0] }
 
@@ -112,7 +130,7 @@ final class GameBoardTests: XCTestCase {
         XCTAssertEqual(sut.winner, nil)
     }
 
-    func test_aGameEndsWithAWiner_whenAPlayerHas3TokensHorizontally() {
+    func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInFirstRow() {
         let sut = GameBoard()
 
         sut.play(.x, on: .init(row: 0, col: 0))
@@ -120,6 +138,26 @@ final class GameBoardTests: XCTestCase {
         sut.play(.x, on: .init(row: 0, col: 2))
 
         XCTAssertEqual(sut.winner, .x)
+    }
+
+    func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInTheMiddleRow() {
+        let sut = GameBoard()
+
+        sut.play(.x, on: .init(row: 1, col: 0))
+        sut.play(.x, on: .init(row: 1, col: 1))
+        sut.play(.x, on: .init(row: 1, col: 2))
+
+        XCTAssertEqual(sut.winner, .x)
+    }
+
+    func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInLastRow() {
+        let sut = GameBoard()
+
+        sut.play(.o, on: .init(row: 2, col: 0))
+        sut.play(.o, on: .init(row: 2, col: 1))
+        sut.play(.o, on: .init(row: 2, col: 2))
+
+        XCTAssertEqual(sut.winner, .o)
     }
 
 }
