@@ -3,10 +3,10 @@
 
 import Foundation
 
-class GameBoard {
+public class GameBoard {
     typealias Position = (row: Int, col: Int)
 
-    enum ErrorStates: Error {
+    public enum ErrorStates: Error {
         case duplicatedMove
     }
 

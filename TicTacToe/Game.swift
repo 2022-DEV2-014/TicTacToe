@@ -20,12 +20,12 @@ public class Game {
         }
     }
 
-    enum ErrorState: Error {
+    public enum ErrorState: Error {
         case movementIsBlockedAsGameIsEnded
     }
 
-    private let board: GameBoard
     private(set) var currentPlayer: Player = .x
+    let board: GameBoard
 
     public var currentState: State {
         if board.isEmpty {
