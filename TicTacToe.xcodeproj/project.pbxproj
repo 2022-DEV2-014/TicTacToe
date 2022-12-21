@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		5B4DBF322951058700FF6CD7 /* GameBoardTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF312951058700FF6CD7 /* GameBoardTests.swift */; };
+		5B4DBF342952FF9C00FF6CD7 /* GameBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF332952FF9C00FF6CD7 /* GameBoard.swift */; };
+		5B4DBF362952FFB400FF6CD7 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF352952FFB400FF6CD7 /* Player.swift */; };
+		5B4DBF382952FFD000FF6CD7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF372952FFD000FF6CD7 /* Game.swift */; };
 		5B76FA022950F8C200E3607C /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; };
 		5B76FA072950F8C200E3607C /* TicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76FA062950F8C200E3607C /* TicTacToeTests.swift */; };
 		5B76FA082950F8C200E3607C /* TicTacToe.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B76F9FC2950F8C200E3607C /* TicTacToe.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -25,6 +28,9 @@
 
 /* Begin PBXFileReference section */
 		5B4DBF312951058700FF6CD7 /* GameBoardTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardTests.swift; sourceTree = "<group>"; };
+		5B4DBF332952FF9C00FF6CD7 /* GameBoard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoard.swift; sourceTree = "<group>"; };
+		5B4DBF352952FFB400FF6CD7 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		5B4DBF372952FFD000FF6CD7 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		5B76F9F92950F8C200E3607C /* TicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B76F9FC2950F8C200E3607C /* TicTacToe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicTacToe.h; sourceTree = "<group>"; };
 		5B76FA012950F8C200E3607C /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -72,6 +78,9 @@
 			isa = PBXGroup;
 			children = (
 				5B76F9FC2950F8C200E3607C /* TicTacToe.h */,
+				5B4DBF332952FF9C00FF6CD7 /* GameBoard.swift */,
+				5B4DBF352952FFB400FF6CD7 /* Player.swift */,
+				5B4DBF372952FFD000FF6CD7 /* Game.swift */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -147,6 +156,7 @@
 				TargetAttributes = {
 					5B76F9F82950F8C200E3607C = {
 						CreatedOnToolsVersion = 14.2;
+						LastSwiftMigration = 1420;
 					};
 					5B76FA002950F8C200E3607C = {
 						CreatedOnToolsVersion = 14.2;
@@ -194,6 +204,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5B4DBF362952FFB400FF6CD7 /* Player.swift in Sources */,
+				5B4DBF382952FFD000FF6CD7 /* Game.swift in Sources */,
+				5B4DBF342952FF9C00FF6CD7 /* GameBoard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +352,7 @@
 		5B76FA0C2950F8C200E3607C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -359,6 +373,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -366,6 +381,7 @@
 		5B76FA0D2950F8C200E3607C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -393,6 +409,7 @@
 		5B76FA0F2950F8C200E3607C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -407,6 +424,7 @@
 		5B76FA102950F8C200E3607C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
