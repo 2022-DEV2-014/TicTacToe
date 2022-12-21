@@ -7,7 +7,8 @@ class GameBoard {
     let winningPositions = [
         [(0,0), (0,1), (0,2)],
         [(1,0), (1,1), (1,2)],
-        [(2,0), (2,1), (2,2)]
+        [(2,0), (2,1), (2,2)],
+        [(0,0), (1,1), (2,2)]
     ]
     // For now let's consider the board as an array of optional players
     private(set) var board: [Player?] = .init(repeating: nil, count: 9)
@@ -191,6 +192,16 @@ final class GameBoardTests: XCTestCase {
 
         sut.play(.o, on: .init(row: 0, col: 2))
         sut.play(.o, on: .init(row: 1, col: 2))
+        sut.play(.o, on: .init(row: 2, col: 2))
+
+        XCTAssertEqual(sut.winner, .o)
+    }
+
+    func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInDiagonalStartingAtFirstPositionInTheBoard() {
+        let sut = GameBoard()
+
+        sut.play(.o, on: .init(row: 0, col: 0))
+        sut.play(.o, on: .init(row: 1, col: 1))
         sut.play(.o, on: .init(row: 2, col: 2))
 
         XCTAssertEqual(sut.winner, .o)
