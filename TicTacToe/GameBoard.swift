@@ -49,6 +49,12 @@ class GameBoard {
         board[position] = player
     }
 
+    #if DEBUG
+    func forceInsert(player: Player, at index: Int) {
+        board[index] = player
+    }
+    #endif
+
 
     private func winner(at position: [Position]) -> Player? {
         let movesInPosition = position

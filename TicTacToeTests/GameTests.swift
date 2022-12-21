@@ -38,62 +38,75 @@ final class GameTests: XCTestCase {
         XCTAssertEqual(sut.currentPlayer, .x)
     }
 
-    func test_gameIsDraw_whenAllPlacesArePlayedAndTheresNoWinner() {
-        let sut = Game()
-
-        sut.play(at: (row: 0, col: 0))
-        sut.play(at: (row: 0, col: 2))
-        sut.play(at: (row: 0, col: 1))
-        sut.play(at: (row: 1, col: 0))
-        sut.play(at: (row: 1, col: 2))
-        sut.play(at: (row: 1, col: 1))
-        sut.play(at: (row: 2, col: 1))
-        sut.play(at: (row: 2, col: 2))
-        sut.play(at: (row: 2, col: 0))
-
-        /*
-         x, x, o
-         o, o, x,
-         x, x, o
-         */
+    func test_gameIsDraw_whenAllPlacesAreOccupiedAndTheresNoWinner() {
+        let sut = Game(
+            board: GameBoard(
+                boardRepresentation:
+            """
+               x, x, o
+               o, o, x,
+               x, x, o
+            """)
+        )
 
         XCTAssertEqual(sut.currentState, .draw)
     }
 
     func test_gameIsWonByX_whenXHasThreeInARow() {
-        let sut = Game()
-
-        sut.play(at: (row: 0, col: 0))
-        sut.play(at: (row: 1, col: 1))
-        sut.play(at: (row: 0, col: 1))
-        sut.play(at: (row: 1, col: 2))
-        sut.play(at: (row: 0, col: 2))
-
-        /*
-         x, x, x
-         _, o, o,
-         _, _, _
-         */
+        let sut = Game(
+            board: GameBoard(
+                boardRepresentation:
+            """
+               x, x, x
+               _, o, o,
+               _, _, _
+            """)
+        )
 
         XCTAssertEqual(sut.currentState, .won(.x))
     }
 
     func test_gameIsWonByO_whenOHasThreeInARow() {
-        let sut = Game()
-
-        sut.play(at: (row: 0, col: 0))
-        sut.play(at: (row: 1, col: 1))
-        sut.play(at: (row: 0, col: 1))
-        sut.play(at: (row: 1, col: 2))
-        sut.play(at: (row: 2, col: 2))
-        sut.play(at: (row: 1, col: 0))
-
-        /*
-         x, x, x
-         o, o, o,
-         _, _, x
-         */
+        let sut = Game(
+            board: GameBoard(
+                boardRepresentation:
+            """
+               x, x, o
+               o, o, o,
+               _, _, x
+            """)
+        )
 
         XCTAssertEqual(sut.currentState, .won(.o))
+    }
+}
+
+
+extension GameBoard {
+    convenience init(boardRepresentation: String) {
+        self.init()
+
+        let positions: [Player?] = boardRepresentation
+            .lowercased()
+            .filter { $0 == "x" || $0 == "o" || $0 == "_" }
+            .map {
+                if $0 == "x" {
+                    return .x
+                }
+                if $0 == "o" {
+                    return .o
+                }
+                return nil
+            }
+
+
+        positions
+            .enumerated()
+            .forEach { (index, item) in
+                guard let player = item else {
+                    return
+                }
+                forceInsert(player: player, at: index)
+            }
     }
 }
