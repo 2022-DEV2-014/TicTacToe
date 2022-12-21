@@ -26,7 +26,6 @@ class GameBoard {
         [(row: 0, col: 2), (row: 1, col: 1), (row: 2, col: 0)]
     ]
 
-    // For now let's consider the board as an array of optional players
     private(set) var board: [Player?] = .init(repeating: nil, count: 9)
 
     var isEmpty: Bool {
