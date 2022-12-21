@@ -4,13 +4,35 @@
 import XCTest
 
 class GameBoard {
-    let winningPositions = [
+    private let baseWinningPositions = [
         [(0,0), (0,1), (0,2)],
         [(1,0), (1,1), (1,2)],
         [(2,0), (2,1), (2,2)],
         [(0,0), (1,1), (2,2)],
-        [(0,2), (1,1), (0,2)]
+        [(0,2), (1,1), (2,0)]
     ]
+
+    // This will evaluate 2 duplicated conditions, evaluating diagonals 4 times. 
+    private lazy var allWinningPositions: [[(Int, Int)]] = {
+        baseWinningPositions
+            .reduce([[(Int, Int)]]()) { partialResult, winPosition in
+                return partialResult + [
+                    winPosition.map { ($0.0, $0.1) }
+                ] + [
+                    winPosition.map { ($0.1, $0.0) }
+                ]
+            }
+    }()
+
+    private lazy var winningPositionsInPoint: [[(CGPoint)]] = {
+        allWinningPositions
+            .reduce([[CGPoint]]()) { partialResult, winPosition in
+                return partialResult + [
+                    winPosition.map { CGPoint(row: $0.0, col: $0.1) }
+                ]
+            }
+    }()
+
     // For now let's consider the board as an array of optional players
     private(set) var board: [Player?] = .init(repeating: nil, count: 9)
 
@@ -19,15 +41,6 @@ class GameBoard {
     }
 
     var winner: Player? {
-        let winningPositionsInPoint: [[CGPoint]] = winningPositions
-            .reduce([[CGPoint]]()) { partialResult, winPosition in
-                return partialResult + [
-                    winPosition.map { CGPoint(row: $0.0, col: $0.1) }
-                ] + [
-                    winPosition.map { CGPoint(row: $0.1, col: $0.0) }
-                ]
-            }
-
         return winningPositionsInPoint
             .compactMap(winner(at:))
             .first
