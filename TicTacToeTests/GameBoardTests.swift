@@ -23,10 +23,22 @@ class GameBoard {
                     winPosition.map { CGPoint(row: $0.0, col: $0.1) }
                 ]
             }
+        let verticallyWinningPositions: [[CGPoint]] = winningPositions
+            .reduce([[CGPoint]]()) { partialResult, winPosition in
+                return partialResult + [
+                    winPosition.map { CGPoint(row: $0.1, col: $0.0) }
+                ]
+            }
 
-        return horizontalWinningPositions
+        let horizontalWinner = horizontalWinningPositions
             .compactMap(winner(at:))
             .first
+
+        let verticalWinner = verticallyWinningPositions
+            .compactMap(winner(at:))
+            .first
+
+        return horizontalWinner ?? verticalWinner
     }
 
     private func winner(at position: [CGPoint]) -> Player? {
@@ -149,6 +161,36 @@ final class GameBoardTests: XCTestCase {
 
         sut.play(.o, on: .init(row: 2, col: 0))
         sut.play(.o, on: .init(row: 2, col: 1))
+        sut.play(.o, on: .init(row: 2, col: 2))
+
+        XCTAssertEqual(sut.winner, .o)
+    }
+
+    func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInFirstColumn() {
+        let sut = GameBoard()
+
+        sut.play(.x, on: .init(row: 0, col: 0))
+        sut.play(.x, on: .init(row: 1, col: 0))
+        sut.play(.x, on: .init(row: 2, col: 0))
+
+        XCTAssertEqual(sut.winner, .x)
+    }
+
+    func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInTheMiddleColumn() {
+        let sut = GameBoard()
+
+        sut.play(.x, on: .init(row: 0, col: 1))
+        sut.play(.x, on: .init(row: 1, col: 1))
+        sut.play(.x, on: .init(row: 2, col: 1))
+
+        XCTAssertEqual(sut.winner, .x)
+    }
+
+    func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInLastColumn() {
+        let sut = GameBoard()
+
+        sut.play(.o, on: .init(row: 0, col: 2))
+        sut.play(.o, on: .init(row: 1, col: 2))
         sut.play(.o, on: .init(row: 2, col: 2))
 
         XCTAssertEqual(sut.winner, .o)
