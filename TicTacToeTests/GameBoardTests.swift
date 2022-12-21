@@ -19,28 +19,18 @@ class GameBoard {
     }
 
     var winner: Player? {
-        let horizontalWinningPositions: [[CGPoint]] = winningPositions
+        let winningPositionsInPoint: [[CGPoint]] = winningPositions
             .reduce([[CGPoint]]()) { partialResult, winPosition in
                 return partialResult + [
                     winPosition.map { CGPoint(row: $0.0, col: $0.1) }
-                ]
-            }
-        let verticallyWinningPositions: [[CGPoint]] = winningPositions
-            .reduce([[CGPoint]]()) { partialResult, winPosition in
-                return partialResult + [
+                ] + [
                     winPosition.map { CGPoint(row: $0.1, col: $0.0) }
                 ]
             }
 
-        let horizontalWinner = horizontalWinningPositions
+        return winningPositionsInPoint
             .compactMap(winner(at:))
             .first
-
-        let verticalWinner = verticallyWinningPositions
-            .compactMap(winner(at:))
-            .first
-
-        return horizontalWinner ?? verticalWinner
     }
 
     private func winner(at position: [CGPoint]) -> Player? {
