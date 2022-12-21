@@ -26,7 +26,7 @@ public class GameBoard {
         [(row: 0, col: 2), (row: 1, col: 1), (row: 2, col: 0)]
     ]
 
-    private(set) var board: [Player?] = .init(repeating: nil, count: 9)
+    public private(set) var board: [Player?] = .init(repeating: nil, count: 9)
 
     var isEmpty: Bool {
         board.filter { $0 != nil }.isEmpty
@@ -75,7 +75,7 @@ public class GameBoard {
         return firstPlayer
     }
 
-    private func positionInArray(for position: Position) -> Int {
+    public func positionInArray(for position: Position) -> Int {
         let width: Int = 3
         return width * position.row + position.col
     }

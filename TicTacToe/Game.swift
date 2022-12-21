@@ -46,6 +46,10 @@ public class Game {
         self.board = board
     }
 
+    public convenience init() {
+        self.init(board: .init())
+    }
+
     public func play(at position: GameBoard.Position) throws {
         guard !currentState.isEnded else {
             throw ErrorState.movementIsBlockedAsGameIsEnded
