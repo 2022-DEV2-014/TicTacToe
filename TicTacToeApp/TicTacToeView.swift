@@ -8,6 +8,8 @@ struct TicTacToeView: View {
     @ObservedObject var game = ObservableGame()
     @State var refreshTrigger = false
     @State var buttonStates: [Bool] = Array(repeating: false, count: 9)
+    @State var showingError = false
+    @State var errorMessage = ""
 
     var body: some View {
         VStack {
@@ -32,7 +34,11 @@ struct TicTacToeView: View {
             }
 
             Text(game.game.currentState.description)
-        }.id(refreshTrigger)
+        }
+        .id(refreshTrigger)
+        .alert(isPresented: $showingError) {
+            Alert(title: Text("Move not allowed"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
+        }
     }
 }
 
@@ -40,11 +46,13 @@ struct TicTacToeView: View {
 
 extension TicTacToeView {
     func squareColor(at position: (row: Int, col: Int)) -> Color {
-        self.game.game.board.player(at: position)?.squareColor ?? .blue
+        self.game.game.board.player(at: position)?
+            .squareColor ?? .blue
     }
 
     func playerToken(at position: (row: Int, col: Int)) -> String {
-        self.game.game.board.player(at: position)?.token ?? ""
+        self.game.game.board.player(at: position)?
+            .token ?? ""
     }
 
     func onButtonPressed(at position: (row: Int, col: Int)) {
@@ -69,7 +77,8 @@ extension TicTacToeView {
             }
 
         } catch {
-            print(error)
+            self.errorMessage = game.translateToHumanReadable(error: error)
+            self.showingError = true
         }
     }
 }
