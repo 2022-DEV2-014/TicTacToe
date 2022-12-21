@@ -4,30 +4,23 @@
 import XCTest
 
 class GameBoard {
+    typealias BoardPosition = (row: Int, col: Int)
+
     private let allWinningPositions = [
         //Horizontal
-        [(0,0), (0,1), (0,2)],
-        [(1,0), (1,1), (1,2)],
-        [(2,0), (2,1), (2,2)],
+        [(row: 0, col: 0), (row: 0, col: 1), (row: 0, col: 2)],
+        [(row: 1, col: 0), (row: 1, col: 1), (row: 1, col: 2)],
+        [(row: 2, col: 0), (row: 2, col: 1), (row: 2, col: 2)],
 
         //Vertical
-        [(0,0), (1,0), (2,0)],
-        [(0,1), (1,1), (2,1)],
-        [(0,2), (1,2), (2,2)],
+        [(row: 0, col: 0), (row: 1, col: 0), (row: 2, col: 0)],
+        [(row: 0, col: 1), (row: 1, col: 1), (row: 2, col: 1)],
+        [(row: 0, col: 2), (row: 1, col: 2), (row: 2, col: 2)],
 
         //Diagonal
-        [(0,0), (1,1), (2,2)],
-        [(0,2), (1,1), (2,0)]
+        [(row: 0, col: 0), (row: 1, col: 1), (row: 2, col: 2)],
+        [(row: 0, col: 2), (row: 1, col: 1), (row: 2, col: 0)]
     ]
-
-    private lazy var winningPositionsInPoint: [[(CGPoint)]] = {
-        allWinningPositions
-            .reduce([[CGPoint]]()) { partialResult, winPosition in
-                return partialResult + [
-                    winPosition.map { CGPoint(row: $0.0, col: $0.1) }
-                ]
-            }
-    }()
 
     // For now let's consider the board as an array of optional players
     private(set) var board: [Player?] = .init(repeating: nil, count: 9)
@@ -37,14 +30,25 @@ class GameBoard {
     }
 
     var winner: Player? {
-        return winningPositionsInPoint
+        return allWinningPositions
             .compactMap(winner(at:))
             .first
     }
 
-    private func winner(at position: [CGPoint]) -> Player? {
+    func play(_ player: Player, on coordinate: BoardPosition) {
+        let position = positionInArray(for: coordinate)
+
+        guard board[position] == nil else {
+            return
+        }
+
+        board[position] = player
+    }
+
+
+    private func winner(at position: [BoardPosition]) -> Player? {
         let movesInPosition = position
-            .map(\.positionInArray)
+            .map(positionInArray)
             .compactMap { board[$0] }
 
         let firstPlayer = movesInPosition.first
@@ -58,29 +62,11 @@ class GameBoard {
         return firstPlayer
     }
 
-    func play(_ player: Player, on coordinate: CGPoint) {
-        let position = coordinate.positionInArray
-
-        guard board[position] == nil else {
-            return
-        }
-        
-        board[position] = player
-    }
-}
-
-extension CGPoint {
-    init(row: Int, col: Int) {
-        self.init(x: col, y: row)
-    }
-
-    var positionInArray: Int {
+    private func positionInArray(for position: BoardPosition) -> Int {
         let width: Int = 3
-        let col = Int(x)
-        let row = Int(y)
-
-        return width * row + col
+        return width * position.row + position.col
     }
+
 }
 
 final class GameBoardTests: XCTestCase {
@@ -94,7 +80,7 @@ final class GameBoardTests: XCTestCase {
     func test_aPlayersTurn_isStoredInTheBoard() {
         let sut = GameBoard()
 
-        sut.play(.x, on: .init(x:0, y:1))
+        sut.play(.x, on: (row: 0, col: 1))
 
         XCTAssertFalse(sut.isEmpty)
     }
@@ -102,10 +88,10 @@ final class GameBoardTests: XCTestCase {
     func test_aPlayersTurn_isStoredInTheRightPosition() {
         let sut = GameBoard()
 
-        sut.play(.x, on: .init(row: 1, col: 0))
-        sut.play(.o, on: .init(row: 1, col: 1))
-        sut.play(.x, on: .init(row: 1, col: 2))
-        sut.play(.o, on: .init(row: 2, col: 0))
+        sut.play(.x, on: (row: 1, col: 0))
+        sut.play(.o, on: (row: 1, col: 1))
+        sut.play(.x, on: (row: 1, col: 2))
+        sut.play(.o, on: (row: 2, col: 0))
 
         XCTAssertEqual(sut.board, [
             nil, nil, nil,
@@ -117,8 +103,8 @@ final class GameBoardTests: XCTestCase {
     func test_aPlayersTurn_cantBePlacedInAnAlreadyUsedPosition() {
         let sut = GameBoard()
 
-        sut.play(.x, on: .init(row: 1, col: 0))
-        sut.play(.o, on: .init(row: 1, col: 0))
+        sut.play(.x, on: (row: 1, col: 0))
+        sut.play(.o, on: (row: 1, col: 0))
 
         XCTAssertEqual(sut.board, [
             nil, nil, nil,
@@ -130,9 +116,9 @@ final class GameBoardTests: XCTestCase {
     func test_anOngoingGame_hasNoWinner() {
         let sut = GameBoard()
 
-        sut.play(.x, on: .init(row: 0, col: 0))
-        sut.play(.o, on: .init(row: 0, col: 1))
-        sut.play(.x, on: .init(row: 0, col: 2))
+        sut.play(.x, on: (row: 0, col: 0))
+        sut.play(.o, on: (row: 0, col: 1))
+        sut.play(.x, on: (row: 0, col: 2))
 
         XCTAssertEqual(sut.winner, nil)
     }
@@ -140,9 +126,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInFirstRow() {
         let sut = GameBoard()
 
-        sut.play(.x, on: .init(row: 0, col: 0))
-        sut.play(.x, on: .init(row: 0, col: 1))
-        sut.play(.x, on: .init(row: 0, col: 2))
+        sut.play(.x, on: (row: 0, col: 0))
+        sut.play(.x, on: (row: 0, col: 1))
+        sut.play(.x, on: (row: 0, col: 2))
 
         XCTAssertEqual(sut.winner, .x)
     }
@@ -150,9 +136,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInTheMiddleRow() {
         let sut = GameBoard()
 
-        sut.play(.x, on: .init(row: 1, col: 0))
-        sut.play(.x, on: .init(row: 1, col: 1))
-        sut.play(.x, on: .init(row: 1, col: 2))
+        sut.play(.x, on: (row: 1, col: 0))
+        sut.play(.x, on: (row: 1, col: 1))
+        sut.play(.x, on: (row: 1, col: 2))
 
         XCTAssertEqual(sut.winner, .x)
     }
@@ -160,9 +146,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInLastRow() {
         let sut = GameBoard()
 
-        sut.play(.o, on: .init(row: 2, col: 0))
-        sut.play(.o, on: .init(row: 2, col: 1))
-        sut.play(.o, on: .init(row: 2, col: 2))
+        sut.play(.o, on: (row: 2, col: 0))
+        sut.play(.o, on: (row: 2, col: 1))
+        sut.play(.o, on: (row: 2, col: 2))
 
         XCTAssertEqual(sut.winner, .o)
     }
@@ -170,9 +156,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInFirstColumn() {
         let sut = GameBoard()
 
-        sut.play(.x, on: .init(row: 0, col: 0))
-        sut.play(.x, on: .init(row: 1, col: 0))
-        sut.play(.x, on: .init(row: 2, col: 0))
+        sut.play(.x, on: (row: 0, col: 0))
+        sut.play(.x, on: (row: 1, col: 0))
+        sut.play(.x, on: (row: 2, col: 0))
 
         XCTAssertEqual(sut.winner, .x)
     }
@@ -180,9 +166,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInTheMiddleColumn() {
         let sut = GameBoard()
 
-        sut.play(.x, on: .init(row: 0, col: 1))
-        sut.play(.x, on: .init(row: 1, col: 1))
-        sut.play(.x, on: .init(row: 2, col: 1))
+        sut.play(.x, on: (row: 0, col: 1))
+        sut.play(.x, on: (row: 1, col: 1))
+        sut.play(.x, on: (row: 2, col: 1))
 
         XCTAssertEqual(sut.winner, .x)
     }
@@ -190,9 +176,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInLastColumn() {
         let sut = GameBoard()
 
-        sut.play(.o, on: .init(row: 0, col: 2))
-        sut.play(.o, on: .init(row: 1, col: 2))
-        sut.play(.o, on: .init(row: 2, col: 2))
+        sut.play(.o, on: (row: 0, col: 2))
+        sut.play(.o, on: (row: 1, col: 2))
+        sut.play(.o, on: (row: 2, col: 2))
 
         XCTAssertEqual(sut.winner, .o)
     }
@@ -200,9 +186,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInDiagonalStartingAtFirstPositionInTheBoard() {
         let sut = GameBoard()
 
-        sut.play(.o, on: .init(row: 0, col: 0))
-        sut.play(.o, on: .init(row: 1, col: 1))
-        sut.play(.o, on: .init(row: 2, col: 2))
+        sut.play(.o, on: (row: 0, col: 0))
+        sut.play(.o, on: (row: 1, col: 1))
+        sut.play(.o, on: (row: 2, col: 2))
 
         XCTAssertEqual(sut.winner, .o)
     }
@@ -210,9 +196,9 @@ final class GameBoardTests: XCTestCase {
     func test_aGameEndsWithAWiner_whenAPlayerHas3TokensInDiagonalStartingAtLastColumnFirstRowInTheBoard() {
         let sut = GameBoard()
 
-        sut.play(.o, on: .init(row: 0, col: 2))
-        sut.play(.o, on: .init(row: 1, col: 1))
-        sut.play(.o, on: .init(row: 2, col: 0))
+        sut.play(.o, on: (row: 0, col: 2))
+        sut.play(.o, on: (row: 1, col: 1))
+        sut.play(.o, on: (row: 2, col: 0))
 
         XCTAssertEqual(sut.winner, .o)
     }
