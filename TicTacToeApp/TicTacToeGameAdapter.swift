@@ -38,10 +38,23 @@ extension Game.State: CustomStringConvertible {
 }
 
 extension GameBoard {
-    func player(at position: Position) -> String {
-        guard let player = board[positionInArray(for: position)] else {
-            return "-"
+    func player(at position: Position) -> Player? {
+        return board[positionInArray(for: position)]
+    }
+}
+
+extension Player {
+    var squareColor: Color {
+        switch self {
+        case .x: return .red
+        case .o: return .green
         }
-        return "\(player)"
+    }
+
+    var token: String {
+        switch self {
+        case .x: return "X"
+        case .o: return "O"
+        }
     }
 }

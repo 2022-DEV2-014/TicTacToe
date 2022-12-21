@@ -36,33 +36,15 @@ struct TicTacToeView: View {
     }
 }
 
+
+
 extension TicTacToeView {
     func squareColor(at position: (row: Int, col: Int)) -> Color {
-        let player = self.game.game.board.player(at: position)
-
-        if player == "x" {
-            return .red
-        }
-
-        if player == "o" {
-            return .green
-        }
-
-        return .blue
+        self.game.game.board.player(at: position)?.squareColor ?? .blue
     }
 
     func playerToken(at position: (row: Int, col: Int)) -> String {
-        let player = self.game.game.board.player(at: position)
-
-        if player == "x" {
-            return "X"
-        }
-
-        if player == "o" {
-            return "O"
-        }
-
-        return ""
+        self.game.game.board.player(at: position)?.token ?? ""
     }
 
     func onButtonPressed(at position: (row: Int, col: Int)) {
