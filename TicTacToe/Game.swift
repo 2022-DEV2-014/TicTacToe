@@ -9,10 +9,14 @@ class Game {
         case onGoing
     }
 
-    let board = GameBoard()
+    private let board: GameBoard
+    private(set) var currentPlayer: Player = .x
+    private(set) var currentState: State = .ready
 
-    var currentPlayer: Player = .x
-    var currentState: State = .ready
+
+    init(board: GameBoard = .init()) {
+        self.board = board
+    }
 
     func play(at position: CGPoint) {
         currentState = .onGoing
