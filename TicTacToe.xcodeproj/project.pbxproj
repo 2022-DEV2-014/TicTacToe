@@ -18,6 +18,7 @@
 		5B4DBF4A2953462600FF6CD7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4DBF492953462600FF6CD7 /* Preview Assets.xcassets */; };
 		5B4DBF4F295347A600FF6CD7 /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; platformFilters = (macos, ); };
 		5B4DBF50295347A600FF6CD7 /* TicTacToe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		5B4DBF5529534DFD00FF6CD7 /* TicTacToeGameAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF5429534DFD00FF6CD7 /* TicTacToeGameAdapter.swift */; };
 		5B76FA022950F8C200E3607C /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; };
 		5B76FA072950F8C200E3607C /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76FA062950F8C200E3607C /* GameTests.swift */; };
 		5B76FA082950F8C200E3607C /* TicTacToe.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B76F9FC2950F8C200E3607C /* TicTacToe.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -66,6 +67,7 @@
 		5B4DBF452953462600FF6CD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B4DBF472953462600FF6CD7 /* TicTacToeApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = TicTacToeApp.entitlements; sourceTree = "<group>"; };
 		5B4DBF492953462600FF6CD7 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5B4DBF5429534DFD00FF6CD7 /* TicTacToeGameAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeGameAdapter.swift; sourceTree = "<group>"; };
 		5B76F9F92950F8C200E3607C /* TicTacToe.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TicTacToe.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B76F9FC2950F8C200E3607C /* TicTacToe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TicTacToe.h; sourceTree = "<group>"; };
 		5B76FA012950F8C200E3607C /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,6 +104,7 @@
 		5B4DBF402953462500FF6CD7 /* TicTacToeApp */ = {
 			isa = PBXGroup;
 			children = (
+				5B4DBF5429534DFD00FF6CD7 /* TicTacToeGameAdapter.swift */,
 				5B4DBF412953462500FF6CD7 /* TicTacToeApp.swift */,
 				5B4DBF432953462500FF6CD7 /* TicTacToeView.swift */,
 				5B4DBF452953462600FF6CD7 /* Assets.xcassets */,
@@ -312,6 +315,7 @@
 			files = (
 				5B4DBF442953462500FF6CD7 /* TicTacToeView.swift in Sources */,
 				5B4DBF422953462500FF6CD7 /* TicTacToeApp.swift in Sources */,
+				5B4DBF5529534DFD00FF6CD7 /* TicTacToeGameAdapter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

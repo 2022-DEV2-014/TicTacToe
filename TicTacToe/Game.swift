@@ -25,7 +25,7 @@ public class Game {
     }
 
     private(set) var currentPlayer: Player = .x
-    let board: GameBoard
+    public let board: GameBoard
 
     public var currentState: State {
         if board.isEmpty {
@@ -46,7 +46,7 @@ public class Game {
         self.board = board
     }
 
-    func play(at position: GameBoard.Position) throws {
+    public func play(at position: GameBoard.Position) throws {
         guard !currentState.isEnded else {
             throw ErrorState.movementIsBlockedAsGameIsEnded
         }

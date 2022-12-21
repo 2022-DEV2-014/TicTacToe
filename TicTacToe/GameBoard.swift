@@ -4,7 +4,7 @@
 import Foundation
 
 public class GameBoard {
-    typealias Position = (row: Int, col: Int)
+    public typealias Position = (row: Int, col: Int)
 
     public enum ErrorStates: Error {
         case duplicatedMove
