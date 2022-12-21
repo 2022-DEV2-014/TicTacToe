@@ -3,6 +3,6 @@
 
 import Foundation
 
-enum Player {
+public enum Player {
     case x, o
 }

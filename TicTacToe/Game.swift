@@ -3,8 +3,8 @@
 
 import Foundation
 
-class Game {
-    enum State: Equatable {
+public class Game {
+    public enum State: Equatable {
         case ready
         case onGoing
         case draw
@@ -26,7 +26,8 @@ class Game {
 
     private let board: GameBoard
     private(set) var currentPlayer: Player = .x
-    var currentState: State {
+
+    public var currentState: State {
         if board.isEmpty {
             return .ready
         }
@@ -40,7 +41,6 @@ class Game {
         }
         return .onGoing
     }
-
 
     init(board: GameBoard = .init()) {
         self.board = board
