@@ -59,4 +59,41 @@ final class GameTests: XCTestCase {
 
         XCTAssertEqual(sut.currentState, .draw)
     }
+
+    func test_gameIsWonByX_whenXHasThreeInARow() {
+        let sut = Game()
+
+        sut.play(at: (row: 0, col: 0))
+        sut.play(at: (row: 1, col: 1))
+        sut.play(at: (row: 0, col: 1))
+        sut.play(at: (row: 1, col: 2))
+        sut.play(at: (row: 0, col: 2))
+
+        /*
+         x, x, x
+         _, o, o,
+         _, _, _
+         */
+
+        XCTAssertEqual(sut.currentState, .won(.x))
+    }
+
+    func test_gameIsWonByO_whenOHasThreeInARow() {
+        let sut = Game()
+
+        sut.play(at: (row: 0, col: 0))
+        sut.play(at: (row: 1, col: 1))
+        sut.play(at: (row: 0, col: 1))
+        sut.play(at: (row: 1, col: 2))
+        sut.play(at: (row: 2, col: 2))
+        sut.play(at: (row: 1, col: 0))
+
+        /*
+         x, x, x
+         o, o, o,
+         _, _, x
+         */
+
+        XCTAssertEqual(sut.currentState, .won(.o))
+    }
 }

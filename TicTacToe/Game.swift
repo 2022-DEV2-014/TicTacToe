@@ -4,10 +4,11 @@
 import Foundation
 
 class Game {
-    enum State {
+    enum State: Equatable {
         case ready
         case onGoing
         case draw
+        case won(Player)
     }
 
     private let board: GameBoard
@@ -19,6 +20,10 @@ class Game {
 
         if board.isFull && board.winner == nil {
             return .draw
+        }
+
+        if let winner = board.winner {
+            return .won(winner)
         }
         return .onGoing
     }
