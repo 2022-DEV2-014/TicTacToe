@@ -20,18 +20,19 @@ enum Token: String {
 }
 
 class ObservableGame: ObservableObject {
-    private var game: Game
     @Published var board: [Token] = []
+
+    private var game: Game
 
     init() {
         self.game = .init()
-        board = game.board.board.compactMap(Token.init)
+        updateBoard()
     }
 
     func play(at position: GameBoard.Position) throws {
         try game.play(at: position)
 
-        board = game.board.board.compactMap(Token.init)
+        updateBoard()
     }
 
     func token(at position: GameBoard.Position) -> Token {
@@ -43,6 +44,10 @@ class ObservableGame: ObservableObject {
         game.currentState.description
     }
 
+    var started: Bool {
+        game.currentState != .ready
+    }
+
     func translateToHumanReadable(error: Error) -> String {
         if let error = error as? Game.ErrorState {
             return error.description
@@ -51,6 +56,15 @@ class ObservableGame: ObservableObject {
             return error.description
         }
         return error.localizedDescription
+    }
+
+    func reset() {
+        game = .init()
+        updateBoard()
+    }
+
+    private func updateBoard() {
+        board = game.board.board.compactMap(Token.init)
     }
 }
 

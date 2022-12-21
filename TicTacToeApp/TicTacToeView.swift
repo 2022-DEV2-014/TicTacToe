@@ -31,11 +31,16 @@ struct TicTacToeView: View {
                     }
                 }
             }
+
             Label(game.status, systemImage: "gamecontroller")
                 .font(.title)
                 .foregroundColor(.white)
                 .multilineTextAlignment(.center)
                 .padding()
+
+            Button("Reset", role: .destructive, action: {
+                self.game.reset()
+            }).opacity(game.started ? 1 : 0)
         }
         .alert(isPresented: $showingError) {
             Alert(title: Text("Move not allowed"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
