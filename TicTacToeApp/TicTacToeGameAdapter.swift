@@ -26,13 +26,13 @@ extension Game.State: CustomStringConvertible {
     public var description: String {
         switch self {
         case .ready:
-            return "Ready"
+            return "Press one circle to start"
         case .onGoing:
-            return "On Going"
+            return ""
         case .draw:
-            return "Draw"
+            return "It's a Draw"
         case .won(let player):
-            return "\(player) Won"
+            return "\(player.token) has Won!"
         }
     }
 }
