@@ -38,5 +38,25 @@ final class GameTests: XCTestCase {
         XCTAssertEqual(sut.currentPlayer, .x)
     }
 
+    func test_gameIsDraw_whenAllPlacesArePlayedAndTheresNoWinner() {
+        let sut = Game()
 
+        sut.play(at: (row: 0, col: 0))
+        sut.play(at: (row: 0, col: 2))
+        sut.play(at: (row: 0, col: 1))
+        sut.play(at: (row: 1, col: 0))
+        sut.play(at: (row: 1, col: 2))
+        sut.play(at: (row: 1, col: 1))
+        sut.play(at: (row: 2, col: 1))
+        sut.play(at: (row: 2, col: 2))
+        sut.play(at: (row: 2, col: 0))
+
+        /*
+         x, x, o
+         o, o, x,
+         x, x, o
+         */
+
+        XCTAssertEqual(sut.currentState, .draw)
+    }
 }

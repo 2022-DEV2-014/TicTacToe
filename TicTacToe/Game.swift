@@ -7,6 +7,7 @@ class Game {
     enum State {
         case ready
         case onGoing
+        case draw
     }
 
     private let board: GameBoard
@@ -14,6 +15,10 @@ class Game {
     var currentState: State {
         if board.isEmpty {
             return .ready
+        }
+
+        if board.isFull && board.winner == nil {
+            return .draw
         }
         return .onGoing
     }
