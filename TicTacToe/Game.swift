@@ -9,6 +9,19 @@ class Game {
         case onGoing
         case draw
         case won(Player)
+
+        var isEnded: Bool {
+            switch self {
+            case .won(_), .draw:
+                return true
+            case .ready, .onGoing:
+                return false
+            }
+        }
+    }
+
+    enum ErrorState: Error {
+        case movementIsBlockedAsGameIsEnded
     }
 
     private let board: GameBoard
@@ -33,7 +46,10 @@ class Game {
         self.board = board
     }
 
-    func play(at position: GameBoard.Position) {
+    func play(at position: GameBoard.Position) throws {
+        guard !currentState.isEnded else {
+            throw ErrorState.movementIsBlockedAsGameIsEnded
+        }
         board.play(currentPlayer, on: position)
         currentPlayer = currentPlayer == .x ? .o : .x
     }

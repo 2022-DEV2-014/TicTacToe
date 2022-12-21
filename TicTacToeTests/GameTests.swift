@@ -21,7 +21,7 @@ final class GameTests: XCTestCase {
     func test_gameStateIsOnGoing_whenStarted() {
         let sut = Game()
 
-        sut.play(at: (row: 0, col: 0))
+        try? sut.play(at: (row: 0, col: 0))
 
         XCTAssertEqual(sut.currentState, .onGoing)
     }
@@ -29,11 +29,11 @@ final class GameTests: XCTestCase {
     func test_playerToggles_afterEachPlay() {
         let sut = Game()
 
-        sut.play(at: (row: 0, col: 0))
+        try? sut.play(at: (row: 0, col: 0))
 
         XCTAssertEqual(sut.currentPlayer, .o)
 
-        sut.play(at: (row: 0, col: 0))
+        try? sut.play(at: (row: 0, col: 0))
 
         XCTAssertEqual(sut.currentPlayer, .x)
     }
@@ -78,5 +78,19 @@ final class GameTests: XCTestCase {
         )
 
         XCTAssertEqual(sut.currentState, .won(.o))
+    }
+
+    func test_onceAGameIsWon_NoMoreMovesArePossible() {
+        let sut = Game(
+            board: GameBoard(
+                boardRepresentation:
+            """
+               x, x, o
+               o, o, o,
+               _, _, x
+            """)
+        )
+
+        XCTAssertThrowsError(try sut.play(at: (row: 2, col: 0)), "If Game is Ended there is no movement possible")
     }
 }
