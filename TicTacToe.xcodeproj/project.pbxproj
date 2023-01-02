@@ -16,7 +16,7 @@
 		5B4DBF442953462500FF6CD7 /* TicTacToeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF432953462500FF6CD7 /* TicTacToeView.swift */; };
 		5B4DBF462953462600FF6CD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4DBF452953462600FF6CD7 /* Assets.xcassets */; };
 		5B4DBF4A2953462600FF6CD7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4DBF492953462600FF6CD7 /* Preview Assets.xcassets */; };
-		5B4DBF4F295347A600FF6CD7 /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; platformFilters = (macos, ); };
+		5B4DBF4F295347A600FF6CD7 /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; };
 		5B4DBF50295347A600FF6CD7 /* TicTacToe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5B4DBF5529534DFD00FF6CD7 /* TicTacToeGameAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF5429534DFD00FF6CD7 /* TicTacToeGameAdapter.swift */; };
 		5B4DBF8B2955FD2700FF6CD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF8A2955FD2700FF6CD7 /* AppDelegate.swift */; };
@@ -185,11 +185,8 @@
 		5B4DBF892955FD2700FF6CD7 /* TIcTacToeUIKit */ = {
 			isa = PBXGroup;
 			children = (
-				5B4DBF8A2955FD2700FF6CD7 /* AppDelegate.swift */,
-				5B4DBF8C2955FD2700FF6CD7 /* SceneDelegate.swift */,
+				5B4DBFB82956162E00FF6CD7 /* AppConfig */,
 				5B4DBF8E2955FD2700FF6CD7 /* ViewController.swift */,
-				5B4DBF932955FD2700FF6CD7 /* Assets.xcassets */,
-				5B4DBF982955FD2700FF6CD7 /* Info.plist */,
 			);
 			path = TIcTacToeUIKit;
 			sourceTree = "<group>";
@@ -209,6 +206,17 @@
 				5B4DBFAD2955FD2800FF6CD7 /* TIcTacToeUIKitUITestsLaunchTests.swift */,
 			);
 			path = TIcTacToeUIKitUITests;
+			sourceTree = "<group>";
+		};
+		5B4DBFB82956162E00FF6CD7 /* AppConfig */ = {
+			isa = PBXGroup;
+			children = (
+				5B4DBF8A2955FD2700FF6CD7 /* AppDelegate.swift */,
+				5B4DBF8C2955FD2700FF6CD7 /* SceneDelegate.swift */,
+				5B4DBF932955FD2700FF6CD7 /* Assets.xcassets */,
+				5B4DBF982955FD2700FF6CD7 /* Info.plist */,
+			);
+			name = AppConfig;
 			sourceTree = "<group>";
 		};
 		5B76F9EF2950F8C200E3607C = {
@@ -548,9 +556,6 @@
 /* Begin PBXTargetDependency section */
 		5B4DBF52295347A600FF6CD7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			platformFilters = (
-				macos,
-			);
 			target = 5B76F9F82950F8C200E3607C /* TicTacToe */;
 			targetProxy = 5B4DBF51295347A600FF6CD7 /* PBXContainerItemProxy */;
 		};
@@ -921,9 +926,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-2022-DEV2-014.TicTacToe";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -950,8 +959,12 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "-2022-DEV2-014.TicTacToe";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
