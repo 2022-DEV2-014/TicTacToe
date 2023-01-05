@@ -5,11 +5,14 @@ import UIKit
 
 class TicTacToeViewController: UIViewController {
 
+    private(set) lazy var buttons: [UIButton] = createBoard()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
 
-        view.backgroundColor = .blue
-        // Do any additional setup after loading the view.
+    private func createBoard() -> [UIButton] {
+        Array(repeating: UIButton.init(), count: 9)
     }
 }
 

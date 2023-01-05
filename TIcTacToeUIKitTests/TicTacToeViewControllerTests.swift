@@ -6,11 +6,11 @@ import XCTest
 
 final class TicTacToeViewControllerTests: XCTestCase {
 
-    func test_controller_isInitialised() {
+    func test_board_has9Buttons() {
         let sut = TicTacToeViewController(nibName: nil, bundle: nil)
 
         sut.loadViewIfNeeded()
 
-        XCTAssertEqual(sut.view.backgroundColor, .blue)
+        XCTAssertEqual(sut.buttons.count, 9)
     }
 }
