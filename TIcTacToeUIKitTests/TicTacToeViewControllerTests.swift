@@ -13,4 +13,13 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
         XCTAssertEqual(sut.buttons.count, 9)
     }
+
+    func test_board_has9IdentifiedButtonsFrom1to9() {
+        let sut = TicTacToeViewController(nibName: nil, bundle: nil)
+
+        sut.loadViewIfNeeded()
+
+        let buttonsId = sut.buttons.map(\.tag)
+        XCTAssertEqual(buttonsId, Array(1...9))
+    }
 }

@@ -12,7 +12,11 @@ class TicTacToeViewController: UIViewController {
     }
 
     private func createBoard() -> [UIButton] {
-        Array(repeating: UIButton.init(), count: 9)
+        (1...9).map { index in
+            let boardItem = UIButton()
+            boardItem.tag = index
+            return boardItem
+        }
     }
 }
 
