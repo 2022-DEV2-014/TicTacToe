@@ -3,7 +3,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TicTacToeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

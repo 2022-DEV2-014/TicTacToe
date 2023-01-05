@@ -21,9 +21,9 @@
 		5B4DBF5529534DFD00FF6CD7 /* TicTacToeGameAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF5429534DFD00FF6CD7 /* TicTacToeGameAdapter.swift */; };
 		5B4DBF8B2955FD2700FF6CD7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF8A2955FD2700FF6CD7 /* AppDelegate.swift */; };
 		5B4DBF8D2955FD2700FF6CD7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF8C2955FD2700FF6CD7 /* SceneDelegate.swift */; };
-		5B4DBF8F2955FD2700FF6CD7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF8E2955FD2700FF6CD7 /* ViewController.swift */; };
+		5B4DBF8F2955FD2700FF6CD7 /* TicTacToeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBF8E2955FD2700FF6CD7 /* TicTacToeViewController.swift */; };
 		5B4DBF942955FD2700FF6CD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4DBF932955FD2700FF6CD7 /* Assets.xcassets */; };
-		5B4DBFA22955FD2800FF6CD7 /* TIcTacToeUIKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBFA12955FD2800FF6CD7 /* TIcTacToeUIKitTests.swift */; };
+		5B4DBFA22955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBFA12955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift */; };
 		5B4DBFAC2955FD2800FF6CD7 /* TIcTacToeUIKitUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBFAB2955FD2800FF6CD7 /* TIcTacToeUIKitUITests.swift */; };
 		5B4DBFAE2955FD2800FF6CD7 /* TIcTacToeUIKitUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBFAD2955FD2800FF6CD7 /* TIcTacToeUIKitUITestsLaunchTests.swift */; };
 		5B76FA022950F8C200E3607C /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; };
@@ -92,11 +92,11 @@
 		5B4DBF882955FD2700FF6CD7 /* TIcTacToeUIKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TIcTacToeUIKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B4DBF8A2955FD2700FF6CD7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5B4DBF8C2955FD2700FF6CD7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5B4DBF8E2955FD2700FF6CD7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B4DBF8E2955FD2700FF6CD7 /* TicTacToeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeViewController.swift; sourceTree = "<group>"; };
 		5B4DBF932955FD2700FF6CD7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B4DBF982955FD2700FF6CD7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5B4DBF9D2955FD2800FF6CD7 /* TIcTacToeUIKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TIcTacToeUIKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B4DBFA12955FD2800FF6CD7 /* TIcTacToeUIKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIcTacToeUIKitTests.swift; sourceTree = "<group>"; };
+		5B4DBFA12955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeViewControllerTests.swift; sourceTree = "<group>"; };
 		5B4DBFA72955FD2800FF6CD7 /* TIcTacToeUIKitUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TIcTacToeUIKitUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B4DBFAB2955FD2800FF6CD7 /* TIcTacToeUIKitUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIcTacToeUIKitUITests.swift; sourceTree = "<group>"; };
 		5B4DBFAD2955FD2800FF6CD7 /* TIcTacToeUIKitUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TIcTacToeUIKitUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -186,7 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				5B4DBFB82956162E00FF6CD7 /* AppConfig */,
-				5B4DBF8E2955FD2700FF6CD7 /* ViewController.swift */,
+				5B4DBF8E2955FD2700FF6CD7 /* TicTacToeViewController.swift */,
 			);
 			path = TIcTacToeUIKit;
 			sourceTree = "<group>";
@@ -194,7 +194,7 @@
 		5B4DBFA02955FD2800FF6CD7 /* TIcTacToeUIKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				5B4DBFA12955FD2800FF6CD7 /* TIcTacToeUIKitTests.swift */,
+				5B4DBFA12955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift */,
 			);
 			path = TIcTacToeUIKitTests;
 			sourceTree = "<group>";
@@ -508,7 +508,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B4DBF8F2955FD2700FF6CD7 /* ViewController.swift in Sources */,
+				5B4DBF8F2955FD2700FF6CD7 /* TicTacToeViewController.swift in Sources */,
 				5B4DBF8B2955FD2700FF6CD7 /* AppDelegate.swift in Sources */,
 				5B4DBF8D2955FD2700FF6CD7 /* SceneDelegate.swift in Sources */,
 			);
@@ -518,7 +518,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B4DBFA22955FD2800FF6CD7 /* TIcTacToeUIKitTests.swift in Sources */,
+				5B4DBFA22955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
