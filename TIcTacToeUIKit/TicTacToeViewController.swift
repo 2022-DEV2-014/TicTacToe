@@ -11,7 +11,39 @@ class TicTacToeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupInterface()
+    }
+
+    private func setupInterface() {
+
+        let rowOneButtons = Array(buttons.prefix(3))
+        let rowTwoButtons = Array(buttons.prefix(6).suffix(3))
+        let rowThreeButtons = Array(buttons.suffix(3))
+
+        let row1StackView = UIStackView(arrangedSubviews: rowOneButtons)
+        let row2StackView = UIStackView(arrangedSubviews: rowTwoButtons)
+        let row3StackView = UIStackView(arrangedSubviews: rowThreeButtons)
+
+        [
+            row1StackView,
+            row2StackView,
+            row3StackView
+        ].forEach { stack in
+            stack.axis = .horizontal
+            stack.distribution = .fillEqually
+            stack.spacing = 10
+        }
+
+        let gridStackView = UIStackView(arrangedSubviews: [row1StackView, row2StackView, row3StackView])
+        gridStackView.axis = .vertical
+        gridStackView.distribution = .fillEqually
+        gridStackView.spacing = 10
+
+        view.addSubview(gridStackView)
+
+        gridStackView.translatesAutoresizingMaskIntoConstraints = false
+        gridStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        gridStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
     }
 
     private func createBoard() -> [UIButton] {
@@ -21,8 +53,10 @@ class TicTacToeViewController: UIViewController {
             let tapAction = UIAction(title: "Tap") { (action) in
                 self.buttonTapped?(index)
             }
-            boardItem.tag = index
             boardItem.addAction(tapAction, for: .touchUpInside)
+            boardItem.backgroundColor = .gray
+            boardItem.setTitle(index.description, for: .normal)
+
             return boardItem
         }
     }

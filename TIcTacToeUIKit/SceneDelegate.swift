@@ -15,9 +15,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = TicTacToeViewController()
+
+        let view = TicTacToeViewController()
+        view.buttonTapped = { index in
+            print("Tapped \(index)")
+
+            let index = index - 1
+
+            let stride = 3
+
+            let row = index / stride
+            let col = index % stride
+
+            print("position is \(row), \(col)")
+        }
+        window.rootViewController = view
         self.window = window
         window.makeKeyAndVisible()
+
+
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
