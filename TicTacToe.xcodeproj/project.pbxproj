@@ -30,6 +30,10 @@
 		5B76FA072950F8C200E3607C /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76FA062950F8C200E3607C /* GameTests.swift */; };
 		5B76FA082950F8C200E3607C /* TicTacToe.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B76F9FC2950F8C200E3607C /* TicTacToe.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5BADB8EA2968354D00AB03B8 /* UIButton+TestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8E92968354D00AB03B8 /* UIButton+TestHelper.swift */; };
+		5BADB8F129687D1100AB03B8 /* TicTacToeGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8F029687D1100AB03B8 /* TicTacToeGame.swift */; };
+		5BADB8F329687DB700AB03B8 /* Game+TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8F229687DB700AB03B8 /* Game+TicTacToe.swift */; };
+		5BADB8F52968825400AB03B8 /* ReseatableTicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8F42968825400AB03B8 /* ReseatableTicTacToe.swift */; };
+		5BADB8F92968836100AB03B8 /* ReseatableTicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8F82968836100AB03B8 /* ReseatableTicTacToeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +110,10 @@
 		5B76FA012950F8C200E3607C /* TicTacToeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TicTacToeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B76FA062950F8C200E3607C /* GameTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTests.swift; sourceTree = "<group>"; };
 		5BADB8E92968354D00AB03B8 /* UIButton+TestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+TestHelper.swift"; sourceTree = "<group>"; };
+		5BADB8F029687D1100AB03B8 /* TicTacToeGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToeGame.swift; sourceTree = "<group>"; };
+		5BADB8F229687DB700AB03B8 /* Game+TicTacToe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Game+TicTacToe.swift"; sourceTree = "<group>"; };
+		5BADB8F42968825400AB03B8 /* ReseatableTicTacToe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReseatableTicTacToe.swift; sourceTree = "<group>"; };
+		5BADB8F82968836100AB03B8 /* ReseatableTicTacToeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReseatableTicTacToeTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +195,8 @@
 		5B4DBF892955FD2700FF6CD7 /* TIcTacToeUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				5BADB8F029687D1100AB03B8 /* TicTacToeGame.swift */,
+				5BADB8F62968827E00AB03B8 /* Adapter */,
 				5BADB8EC2968660C00AB03B8 /* TicTacToeGame */,
 				5B4DBFB82956162E00FF6CD7 /* AppConfig */,
 			);
@@ -196,6 +206,7 @@
 		5B4DBFA02955FD2800FF6CD7 /* TIcTacToeUIKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				5BADB8F72968832700AB03B8 /* Adapter */,
 				5BADB8ED2968662100AB03B8 /* TicTacToeGame */,
 				5BADB8EB2968420500AB03B8 /* TestHelper */,
 			);
@@ -292,6 +303,23 @@
 				5B4DBFA12955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift */,
 			);
 			path = TicTacToeGame;
+			sourceTree = "<group>";
+		};
+		5BADB8F62968827E00AB03B8 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				5BADB8F229687DB700AB03B8 /* Game+TicTacToe.swift */,
+				5BADB8F42968825400AB03B8 /* ReseatableTicTacToe.swift */,
+			);
+			name = Adapter;
+			sourceTree = "<group>";
+		};
+		5BADB8F72968832700AB03B8 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				5BADB8F82968836100AB03B8 /* ReseatableTicTacToeTests.swift */,
+			);
+			path = Adapter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -535,8 +563,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BADB8F52968825400AB03B8 /* ReseatableTicTacToe.swift in Sources */,
+				5BADB8F329687DB700AB03B8 /* Game+TicTacToe.swift in Sources */,
 				5B4DBF8F2955FD2700FF6CD7 /* TicTacToeViewController.swift in Sources */,
 				5B4DBF8B2955FD2700FF6CD7 /* AppDelegate.swift in Sources */,
+				5BADB8F129687D1100AB03B8 /* TicTacToeGame.swift in Sources */,
 				5B4DBF8D2955FD2700FF6CD7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +576,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BADB8F92968836100AB03B8 /* ReseatableTicTacToeTests.swift in Sources */,
 				5B4DBFA22955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift in Sources */,
 				5BADB8EA2968354D00AB03B8 /* UIButton+TestHelper.swift in Sources */,
 			);
