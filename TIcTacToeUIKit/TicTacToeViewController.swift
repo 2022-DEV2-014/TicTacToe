@@ -18,6 +18,12 @@ class TicTacToeViewController: UIViewController {
         buttons[boardCellIndex].setTitle(title, for: .normal)
     }
 
+    func reset() {
+        buttons.forEach { button in
+            button.setTitle("", for: .normal)
+        }
+    }
+
     private func setupInterface() {
 
         let rowOneButtons = Array(buttons.prefix(3))

@@ -68,4 +68,16 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
         XCTAssertEqual(sut.buttons[4].currentTitle, "X")
     }
+
+    func test_aReset_clearsAllTitles() {
+        let sut = TicTacToeViewController()
+
+        sut.loadViewIfNeeded()
+
+        sut.place(title: "X", at: 4)
+        
+        sut.reset()
+
+        XCTAssertEqual(sut.buttons[4].currentTitle, "")
+    }
 }
