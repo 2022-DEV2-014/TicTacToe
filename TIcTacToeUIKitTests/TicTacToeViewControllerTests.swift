@@ -58,4 +58,14 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
         XCTAssertTrue(zeroFrames.isEmpty)
     }
+
+    func test_placingAnItemInBoard_happensAtIntendedLocation() {
+        let sut = TicTacToeViewController(nibName: nil, bundle: nil)
+
+        sut.loadViewIfNeeded()
+
+        sut.place(title: "X", at: 4)
+
+        XCTAssertEqual(sut.buttons[4].currentTitle, "X")
+    }
 }
