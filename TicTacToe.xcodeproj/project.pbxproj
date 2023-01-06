@@ -34,6 +34,8 @@
 		5BADB8F329687DB700AB03B8 /* Game+TicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8F229687DB700AB03B8 /* Game+TicTacToe.swift */; };
 		5BADB8F52968825400AB03B8 /* ReseatableTicTacToe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8F42968825400AB03B8 /* ReseatableTicTacToe.swift */; };
 		5BADB8F92968836100AB03B8 /* ReseatableTicTacToeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8F82968836100AB03B8 /* ReseatableTicTacToeTests.swift */; };
+		5BADB8FA296887B900AB03B8 /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; };
+		5BADB8FB296887B900AB03B8 /* TicTacToe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +67,13 @@
 			remoteGlobalIDString = 5B76F9F82950F8C200E3607C;
 			remoteInfo = TicTacToe;
 		};
+		5BADB8FC296887B900AB03B8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5B76F9F02950F8C200E3607C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5B76F9F82950F8C200E3607C;
+			remoteInfo = TicTacToe;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -75,6 +84,17 @@
 			dstSubfolderSpec = 10;
 			files = (
 				5B4DBF50295347A600FF6CD7 /* TicTacToe.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BADB8FE296887B900AB03B8 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				5BADB8FB296887B900AB03B8 /* TicTacToe.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -129,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BADB8FA296887B900AB03B8 /* TicTacToe.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -362,10 +383,12 @@
 				5B4DBF842955FD2700FF6CD7 /* Sources */,
 				5B4DBF852955FD2700FF6CD7 /* Frameworks */,
 				5B4DBF862955FD2700FF6CD7 /* Resources */,
+				5BADB8FE296887B900AB03B8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5BADB8FD296887B900AB03B8 /* PBXTargetDependency */,
 			);
 			name = TIcTacToeUIKit;
 			productName = TIcTacToeUIKit;
@@ -633,6 +656,11 @@
 			isa = PBXTargetDependency;
 			target = 5B76F9F82950F8C200E3607C /* TicTacToe */;
 			targetProxy = 5B76FA032950F8C200E3607C /* PBXContainerItemProxy */;
+		};
+		5BADB8FD296887B900AB03B8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5B76F9F82950F8C200E3607C /* TicTacToe */;
+			targetProxy = 5BADB8FC296887B900AB03B8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

@@ -20,6 +20,12 @@ final class GameBoardTests: XCTestCase {
         XCTAssertFalse(sut.isEmpty)
     }
 
+    func test_anInvalidMove_throwsAnError() throws {
+        let sut = GameBoard()
+
+        XCTAssertThrowsError(try sut.play(.x, on: (row: 3, col: 1)))
+    }
+
     func test_aPlayersTurn_isStoredInTheRightPosition() throws {
         let sut = GameBoard()
 

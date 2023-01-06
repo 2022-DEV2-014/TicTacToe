@@ -8,6 +8,7 @@ public class GameBoard {
 
     public enum ErrorStates: Error {
         case duplicatedMove
+        case invalidMove
     }
 
     private let allWinningPositions = [
@@ -44,6 +45,10 @@ public class GameBoard {
 
     func play(_ player: Player, on coordinate: Position) throws {
         let position = positionInArray(for: coordinate)
+
+        guard position >= 0 && position < 9 else {
+            throw ErrorStates.invalidMove
+        }
 
         guard board[position] == nil else {
             throw ErrorStates.duplicatedMove
