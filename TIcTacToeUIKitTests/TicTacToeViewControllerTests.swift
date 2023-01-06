@@ -7,7 +7,7 @@ import XCTest
 final class TicTacToeViewControllerTests: XCTestCase {
 
     func test_board_has9Buttons() {
-        let sut = TicTacToeViewController(nibName: nil, bundle: nil)
+        let sut = TicTacToeViewController()
 
         sut.loadViewIfNeeded()
 
@@ -15,7 +15,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_board_has9IdentifiedButtonsFrom1to9() {
-        let sut = TicTacToeViewController(nibName: nil, bundle: nil)
+        let sut = TicTacToeViewController()
 
         sut.loadViewIfNeeded()
 
@@ -24,7 +24,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_board_buttonsAreTappable() {
-        let sut = TicTacToeViewController(nibName: nil, bundle: nil)
+        let sut = TicTacToeViewController()
         var tappedButtons = [Int]()
         let buttonTapped = { index in
             tappedButtons.append(index)
@@ -40,7 +40,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_board_buttonsAreArranged() {
-        let sut = TicTacToeViewController(nibName: nil, bundle: nil)
+        let sut = TicTacToeViewController()
 
         let scene = UIApplication.shared.connectedScenes.first
         guard let windowScene = (scene as? UIWindowScene) else {
@@ -60,7 +60,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_placingAnItemInBoard_happensAtIntendedLocation() {
-        let sut = TicTacToeViewController(nibName: nil, bundle: nil)
+        let sut = TicTacToeViewController()
 
         sut.loadViewIfNeeded()
 
