@@ -116,6 +116,8 @@ private extension GameBoard.ErrorStates {
         switch self {
         case .duplicatedMove:
             return "There's already a piece in this position"
+        case .invalidMove:
+            return "Movement is not valid"
         }
     }
 }
