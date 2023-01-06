@@ -187,8 +187,8 @@
 		5B4DBF892955FD2700FF6CD7 /* TIcTacToeUIKit */ = {
 			isa = PBXGroup;
 			children = (
+				5BADB8EC2968660C00AB03B8 /* TicTacToeGame */,
 				5B4DBFB82956162E00FF6CD7 /* AppConfig */,
-				5B4DBF8E2955FD2700FF6CD7 /* TicTacToeViewController.swift */,
 			);
 			path = TIcTacToeUIKit;
 			sourceTree = "<group>";
@@ -196,7 +196,7 @@
 		5B4DBFA02955FD2800FF6CD7 /* TIcTacToeUIKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				5B4DBFA12955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift */,
+				5BADB8ED2968662100AB03B8 /* TicTacToeGame */,
 				5BADB8EB2968420500AB03B8 /* TestHelper */,
 			);
 			path = TIcTacToeUIKitTests;
@@ -276,6 +276,22 @@
 				5BADB8E92968354D00AB03B8 /* UIButton+TestHelper.swift */,
 			);
 			path = TestHelper;
+			sourceTree = "<group>";
+		};
+		5BADB8EC2968660C00AB03B8 /* TicTacToeGame */ = {
+			isa = PBXGroup;
+			children = (
+				5B4DBF8E2955FD2700FF6CD7 /* TicTacToeViewController.swift */,
+			);
+			name = TicTacToeGame;
+			sourceTree = "<group>";
+		};
+		5BADB8ED2968662100AB03B8 /* TicTacToeGame */ = {
+			isa = PBXGroup;
+			children = (
+				5B4DBFA12955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift */,
+			);
+			path = TicTacToeGame;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
