@@ -41,7 +41,6 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
     func test_board_buttonsAreArranged() {
         let sut = TicTacToeViewController()
-
         let scene = UIApplication.shared.connectedScenes.first
         guard let windowScene = (scene as? UIWindowScene) else {
             XCTFail("Can't find a window scene")
@@ -61,7 +60,6 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
     func test_placingAnItemInBoard_happensAtIntendedLocation() {
         let sut = TicTacToeViewController()
-
         sut.loadViewIfNeeded()
 
         sut.place(title: "X", at: 4)
@@ -71,13 +69,14 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
     func test_aReset_clearsAllTitles() {
         let sut = TicTacToeViewController()
-
         sut.loadViewIfNeeded()
-
         sut.place(title: "X", at: 4)
-        
+
         sut.reset()
 
-        XCTAssertEqual(sut.buttons[4].currentTitle, "")
+        let titles = sut.buttons.compactMap(\.currentTitle)
+        let emptyTitles = titles.filter(\.isEmpty)
+
+        XCTAssertEqual(emptyTitles.count, 9)
     }
 }
