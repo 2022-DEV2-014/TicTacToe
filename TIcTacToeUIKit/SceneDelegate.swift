@@ -16,19 +16,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         let window = UIWindow(windowScene: windowScene)
 
-        let view = TicTacToeViewController()
-        view.buttonTapped = { index in
-            print("Tapped \(index)")
+        let compositionRoot = CompositionRoot()
+        let view = CompositionRoot().createView()
 
-            let index = index - 1
-
-            let stride = 3
-
-            let row = index / stride
-            let col = index % stride
-
-            print("position is \(row), \(col)")
-        }
         window.rootViewController = view
         self.window = window
         window.makeKeyAndVisible()
