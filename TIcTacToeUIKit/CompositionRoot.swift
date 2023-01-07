@@ -15,15 +15,3 @@ class CompositionRoot {
         return view
     }
 }
-
-extension TicTacToeViewController: GameDisplay {
-    func showError(message: String) {
-        print(message)
-    }
-
-    func updateBoard(tokens: [String]) {
-        tokens.enumerated().forEach { index, token in
-            place(title: token, at: index)
-        }
-    }
-}
