@@ -79,4 +79,19 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
         XCTAssertEqual(gameSpy.invokedBoardRepresentationGetterCount, 1)
     }
+
+    func test_boardIntegration_boardIsUpdatedAfterEachTap() {
+        let gameSpy = GameSpy()
+        let presenter = TicTacToePresenter(game: gameSpy)
+        let sut = TicTacToeViewController(presenter: presenter)
+        presenter.display = sut
+
+        sut.loadViewIfNeeded()
+
+        sut.buttons.forEach { button in
+            button.simulateTap()
+        }
+
+        XCTAssertEqual(gameSpy.invokedBoardRepresentationGetterCount, 10)
+    }
 }
