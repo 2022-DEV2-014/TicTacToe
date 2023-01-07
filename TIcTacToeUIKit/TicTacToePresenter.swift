@@ -23,6 +23,7 @@ class TicTacToePresenter {
 
     func userRequestedReset() {
         game.reset()
+        display?.updateBoard(tokens: game.boardRepresentation)
     }
 
 }
