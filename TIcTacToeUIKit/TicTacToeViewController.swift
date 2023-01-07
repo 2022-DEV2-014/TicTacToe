@@ -6,6 +6,7 @@ import UIKit
 class TicTacToeViewController: UIViewController {
 
     private(set) lazy var buttons: [UIButton] = createBoard()
+    private(set) lazy var resetButton: UIButton = createReset()
     private var presenter: TicTacToePresenter
 
     init(presenter: TicTacToePresenter) {
@@ -61,6 +62,12 @@ class TicTacToeViewController: UIViewController {
         gridStackView.translatesAutoresizingMaskIntoConstraints = false
         gridStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         gridStackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+
+        view.addSubview(resetButton)
+
+        resetButton.translatesAutoresizingMaskIntoConstraints = false
+        resetButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        resetButton.topAnchor.constraint(equalTo: gridStackView.bottomAnchor, constant: 20).isActive = true
     }
 
     private func createBoard() -> [UIButton] {
@@ -75,6 +82,16 @@ class TicTacToeViewController: UIViewController {
 
             return boardItem
         }
+    }
+
+    private func createReset() -> UIButton {
+        let action = UIAction { [weak self] _ in
+            self?.reset()
+        }
+        let button = UIButton(type: .roundedRect, primaryAction: action)
+
+        button.setTitle("Reset", for: .normal)
+        return button
     }
 
 

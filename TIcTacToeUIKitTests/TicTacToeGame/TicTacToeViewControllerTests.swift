@@ -123,4 +123,35 @@ final class TicTacToeViewControllerTests: XCTestCase {
         }
         XCTAssertEqual(alert.message, "Error Random")
     }
+
+    func test_boardIntegration_resetRequestIsSentAfterTapOnIt() {
+        let gameSpy = GameSpy()
+        let presenter = TicTacToePresenter(game: gameSpy)
+        let sut = TicTacToeViewController(presenter: presenter)
+        presenter.display = sut
+
+        sut.loadViewIfNeeded()
+
+        sut.resetButton.simulateTap()
+
+        XCTAssertEqual(gameSpy.invokedResetCount, 1)
+    }
+
+    func test_reset_isVisibleAndArranged() {
+        let sut = TicTacToeViewController(presenter: TicTacToePresenter(game: GameSpy()))
+        let scene = UIApplication.shared.connectedScenes.first
+        guard let windowScene = (scene as? UIWindowScene) else {
+            XCTFail("Can't find a window scene")
+            return
+        }
+        let mainWindow = windowScene.windows.first(where: { $0.isKeyWindow })
+        mainWindow?.rootViewController = sut
+        mainWindow?.makeKeyAndVisible()
+
+        sut.loadViewIfNeeded()
+        RunLoop.main.run(until: .now)
+
+        XCTAssertNotEqual(sut.resetButton.frame, .zero)
+    }
+
 }
