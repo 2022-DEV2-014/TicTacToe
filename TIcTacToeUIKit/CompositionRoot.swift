@@ -8,13 +8,9 @@ class CompositionRoot {
     let game = ReseatableTicTacToe()
 
     func createView() -> UIViewController {
-        let view = TicTacToeViewController()
         let presenter = TicTacToePresenter(game: game)
+        let view = TicTacToeViewController(presenter: presenter)
         presenter.display = view
-
-        view.buttonTapped = { index in
-            presenter.userPlayedAt(position: index - 1)
-        }
 
         return view
     }

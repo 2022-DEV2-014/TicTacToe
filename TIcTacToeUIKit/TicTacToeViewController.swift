@@ -6,12 +6,21 @@ import UIKit
 class TicTacToeViewController: UIViewController {
 
     private(set) lazy var buttons: [UIButton] = createBoard()
+    private var presenter: TicTacToePresenter
 
-    var buttonTapped: ((Int)->Void)?
+    init(presenter: TicTacToePresenter) {
+        self.presenter = presenter
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupInterface()
+        presenter.displayIsReady()
     }
 
     func place(title: String, at boardCellIndex: Int) {
@@ -61,7 +70,7 @@ class TicTacToeViewController: UIViewController {
             let boardItem = UIButton()
 
             let tapAction = UIAction(title: "Tap") { (action) in
-                self.buttonTapped?(index)
+                self.presenter.userPlayedAt(position: index - 1)
             }
             boardItem.addAction(tapAction, for: .touchUpInside)
             boardItem.backgroundColor = .gray

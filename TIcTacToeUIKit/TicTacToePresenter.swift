@@ -26,4 +26,8 @@ class TicTacToePresenter {
         display?.updateBoard(tokens: game.boardRepresentation)
     }
 
+    func displayIsReady() {
+        display?.updateBoard(tokens: game.boardRepresentation)
+    }
+
 }
