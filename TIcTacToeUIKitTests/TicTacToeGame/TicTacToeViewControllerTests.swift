@@ -42,19 +42,6 @@ final class TicTacToeViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.buttons[4].currentTitle, "X")
     }
 
-    func test_aReset_clearsAllTitles() {
-        let sut = TicTacToeViewController(presenter: TicTacToePresenter(game: GameSpy()))
-        sut.loadViewIfNeeded()
-        sut.place(title: "X", at: 4)
-
-        sut.reset()
-
-        let titles = sut.buttons.compactMap(\.currentTitle)
-        let emptyTitles = titles.filter(\.isEmpty)
-
-        XCTAssertEqual(emptyTitles.count, 9)
-    }
-
     func test_boardIntegration_buttonsAreTappableAndThoseTapsReachTheGameEngine() {
         let gameSpy = GameSpy()
         let presenter = TicTacToePresenter(game: gameSpy)
@@ -93,5 +80,21 @@ final class TicTacToeViewControllerTests: XCTestCase {
         }
 
         XCTAssertEqual(gameSpy.invokedBoardRepresentationGetterCount, 10)
+    }
+
+    func test_aReset_clearsAllTitles() {
+        let gameSpy = GameSpy()
+        let presenter = TicTacToePresenter(game: gameSpy)
+        let sut = TicTacToeViewController(presenter: presenter)
+        presenter.display = sut
+        sut.loadViewIfNeeded()
+        sut.place(title: "X", at: 4)
+
+        sut.reset()
+
+        let titles = sut.buttons.compactMap(\.currentTitle)
+        let emptyTitles = titles.filter(\.isEmpty)
+
+        XCTAssertEqual(emptyTitles.count, 9)
     }
 }

@@ -28,9 +28,7 @@ class TicTacToeViewController: UIViewController {
     }
 
     func reset() {
-        buttons.forEach { button in
-            button.setTitle("", for: .normal)
-        }
+        presenter.userRequestedReset()
     }
 
     private func setupInterface() {
