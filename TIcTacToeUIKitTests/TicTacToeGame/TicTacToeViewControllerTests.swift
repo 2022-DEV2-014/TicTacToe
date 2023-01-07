@@ -97,4 +97,30 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
         XCTAssertEqual(emptyTitles.count, 9)
     }
+
+    func test_showError_displaysAnAlert() {
+        let gameSpy = GameSpy()
+        let presenter = TicTacToePresenter(game: gameSpy)
+        let sut = TicTacToeViewController(presenter: presenter)
+        presenter.display = sut
+
+        let scene = UIApplication.shared.connectedScenes.first
+        guard let windowScene = (scene as? UIWindowScene) else {
+            XCTFail("Can't find a window scene")
+            return
+        }
+        let mainWindow = windowScene.windows.first(where: { $0.isKeyWindow })
+        mainWindow?.rootViewController = sut
+        mainWindow?.makeKeyAndVisible()
+
+        sut.loadViewIfNeeded()
+
+        sut.showError(message: "Error Random")
+
+        guard let alert = sut.presentedViewController as? UIAlertController else {
+            XCTFail("When an error occurs, an alert is expected to be shown")
+            return
+        }
+        XCTAssertEqual(alert.message, "Error Random")
+    }
 }
