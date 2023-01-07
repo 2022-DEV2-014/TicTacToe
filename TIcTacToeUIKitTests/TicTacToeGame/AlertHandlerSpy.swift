@@ -5,6 +5,17 @@ import Foundation
 @testable import TIcTacToeUIKit
 
 class GameDisplaySpy: GameDisplay {
+    var invokedDisplayState = false
+    var invokedDisplayStateCount = 0
+    var displayStateParameters: String?
+    var displayStateParametersList = [String]()
+    func displayState(message: String) {
+        invokedDisplayState = true
+        invokedDisplayStateCount += 1
+        displayStateParameters = message
+        displayStateParametersList.append(message)
+    }
+
 
     var invokedShowError = false
     var invokedShowErrorCount = 0

@@ -6,4 +6,5 @@ import Foundation
 protocol GameDisplay: AnyObject {
     func showError(message: String)
     func updateBoard(tokens: [String])
+    func displayState(message: String)
 }

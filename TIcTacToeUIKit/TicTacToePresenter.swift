@@ -15,6 +15,7 @@ class TicTacToePresenter {
         do {
             try game.play(at: position)
             display?.updateBoard(tokens: game.boardRepresentation)
+            display?.displayState(message: game.status)
         } catch {
             let description = game.humanReadable(error: error)
             display?.showError(message: description)

@@ -65,5 +65,21 @@ final class TicTacToePresenterTests: XCTestCase {
         XCTAssertTrue(display.invokedUpdateBoard)
     }
 
+    func test_afterAGameMove_stateOfTheGameIsRequestedAndUpdated() {
+        let game = GameSpy()
+        let sut = TicTacToePresenter(game: game)
+        let display = GameDisplaySpy()
+        sut.display = display
+
+        game.stubbedStatus = "Random Status"
+        sut.userPlayedAt(position: 8)
+
+        game.stubbedStatus = "Another Random Status"
+        sut.userPlayedAt(position: 3)
+
+        XCTAssertEqual(game.invokedStatusGetterCount, 2)
+        XCTAssertEqual(display.invokedDisplayStateCount, 2)
+        XCTAssertEqual(display.displayStateParametersList, ["Random Status", "Another Random Status"])
+    }
     
 }

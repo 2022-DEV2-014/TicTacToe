@@ -5,6 +5,10 @@ import Foundation
 import UIKit
 
 extension TicTacToeViewController: GameDisplay {
+    func displayState(message: String) {
+        print(message)
+    }
+
     func showError(message: String) {
         let dialogMessage = UIAlertController(
             title: "Tic Tac Toe",
