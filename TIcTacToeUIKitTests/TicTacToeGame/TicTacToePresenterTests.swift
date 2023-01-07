@@ -19,6 +19,21 @@ final class TicTacToePresenterTests: XCTestCase {
         XCTAssertEqual(game.invokedPlayCount, 3)
     }
 
+    func test_afterAMove_anUpdatedBoardIsPassedToTheDisplay() {
+        let game = GameSpy()
+        let display = GameDisplaySpy()
+        let sut = TicTacToePresenter(game: game)
+        sut.display = display
+
+        sut.userPlayedAt(position: 8)
+
+        XCTAssertEqual(display.updateBoardParameters, [
+            "X","O", "",
+            "", "", "X",
+            "O","X", "",
+        ])
+    }
+
     func test_gameMoves_displayAMessageWhenAnErrorIsDetected() {
         let game = GameSpy()
         let sut = TicTacToePresenter(game: game)
@@ -41,4 +56,6 @@ final class TicTacToePresenterTests: XCTestCase {
 
         XCTAssertEqual(game.invokedResetCount, 1)
     }
+
+    
 }

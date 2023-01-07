@@ -18,4 +18,15 @@ class GameDisplaySpy: GameDisplay {
         showErrorParametersList.append(message)
     }
 
+    var invokedUpdateBoard = false
+    var invokedUpdateBoardCount = 0
+    var updateBoardParameters: [String]?
+    var updateBoardParametersList = [[String]]()
+    func updateBoard(tokens: [String]) {
+        invokedUpdateBoard = true
+        invokedUpdateBoardCount += 1
+        updateBoardParameters = tokens
+        updateBoardParametersList.append(tokens)
+    }
+
 }
