@@ -4,18 +4,18 @@
 import Foundation
 @testable import TIcTacToeUIKit
 
-class AlertHandlerSpy: AlertDisplayer {
+class GameDisplaySpy: GameDisplay {
 
-    var invokedDisplayError = false
-    var invokedDisplayErrorCount = 0
-    var displayErrorParameters: String?
-    var displayErrorParametersList = [String]()
+    var invokedShowError = false
+    var invokedShowErrorCount = 0
+    var showErrorParameters: String?
+    var showErrorParametersList = [String]()
 
-    func displayError(message: String) {
-        invokedDisplayError = true
-        invokedDisplayErrorCount += 1
-        displayErrorParameters = message
-        displayErrorParametersList.append(message)
+    func showError(message: String) {
+        invokedShowError = true
+        invokedShowErrorCount += 1
+        showErrorParameters = message
+        showErrorParametersList.append(message)
     }
 
 }

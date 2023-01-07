@@ -41,7 +41,7 @@
 		5BADB904296973EE00AB03B8 /* GameSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB903296973EE00AB03B8 /* GameSpy.swift */; };
 		5BADB90629697CDA00AB03B8 /* AlertHandlerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB90529697CDA00AB03B8 /* AlertHandlerSpy.swift */; };
 		5BADB90829697D2300AB03B8 /* TicTacToePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB90729697D2300AB03B8 /* TicTacToePresenter.swift */; };
-		5BADB90A29697D4200AB03B8 /* AlertDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB90929697D4200AB03B8 /* AlertDisplayer.swift */; };
+		5BADB90A29697D4200AB03B8 /* GameDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB90929697D4200AB03B8 /* GameDisplay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,7 +145,7 @@
 		5BADB903296973EE00AB03B8 /* GameSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSpy.swift; sourceTree = "<group>"; };
 		5BADB90529697CDA00AB03B8 /* AlertHandlerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandlerSpy.swift; sourceTree = "<group>"; };
 		5BADB90729697D2300AB03B8 /* TicTacToePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToePresenter.swift; sourceTree = "<group>"; };
-		5BADB90929697D4200AB03B8 /* AlertDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDisplayer.swift; sourceTree = "<group>"; };
+		5BADB90929697D4200AB03B8 /* GameDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameDisplay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -328,7 +328,7 @@
 			children = (
 				5B4DBF8E2955FD2700FF6CD7 /* TicTacToeViewController.swift */,
 				5BADB90729697D2300AB03B8 /* TicTacToePresenter.swift */,
-				5BADB90929697D4200AB03B8 /* AlertDisplayer.swift */,
+				5BADB90929697D4200AB03B8 /* GameDisplay.swift */,
 			);
 			name = TicTacToeGame;
 			sourceTree = "<group>";
@@ -611,7 +611,7 @@
 				5B4DBF8F2955FD2700FF6CD7 /* TicTacToeViewController.swift in Sources */,
 				5B4DBF8B2955FD2700FF6CD7 /* AppDelegate.swift in Sources */,
 				5BADB8F129687D1100AB03B8 /* TicTacToe.swift in Sources */,
-				5BADB90A29697D4200AB03B8 /* AlertDisplayer.swift in Sources */,
+				5BADB90A29697D4200AB03B8 /* GameDisplay.swift in Sources */,
 				5B4DBF8D2955FD2700FF6CD7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
