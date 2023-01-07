@@ -39,6 +39,7 @@
 		5BADB90029688DAB00AB03B8 /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8FF29688DAB00AB03B8 /* CompositionRoot.swift */; };
 		5BADB902296895E900AB03B8 /* TicTacToePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB901296895E900AB03B8 /* TicTacToePresenter.swift */; };
 		5BADB904296973EE00AB03B8 /* GameSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB903296973EE00AB03B8 /* GameSpy.swift */; };
+		5BADB90629697CDA00AB03B8 /* AlertHandlerSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB90529697CDA00AB03B8 /* AlertHandlerSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,6 +141,7 @@
 		5BADB8FF29688DAB00AB03B8 /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
 		5BADB901296895E900AB03B8 /* TicTacToePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToePresenter.swift; sourceTree = "<group>"; };
 		5BADB903296973EE00AB03B8 /* GameSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSpy.swift; sourceTree = "<group>"; };
+		5BADB90529697CDA00AB03B8 /* AlertHandlerSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandlerSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -330,6 +332,7 @@
 			children = (
 				5B4DBFA12955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift */,
 				5BADB901296895E900AB03B8 /* TicTacToePresenter.swift */,
+				5BADB90529697CDA00AB03B8 /* AlertHandlerSpy.swift */,
 			);
 			path = TicTacToeGame;
 			sourceTree = "<group>";
@@ -609,6 +612,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5BADB90629697CDA00AB03B8 /* AlertHandlerSpy.swift in Sources */,
 				5BADB8F92968836100AB03B8 /* ReseatableTicTacToeTests.swift in Sources */,
 				5BADB904296973EE00AB03B8 /* GameSpy.swift in Sources */,
 				5B4DBFA22955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift in Sources */,
