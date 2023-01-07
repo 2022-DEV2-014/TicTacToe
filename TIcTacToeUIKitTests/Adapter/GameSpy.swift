@@ -4,7 +4,7 @@
 import Foundation
 @testable import TIcTacToeUIKit
 
-class GameSpy: TicTacToe & Resetable {
+class GameSpy: TicTacToe & Resetable & TicTacToeErrorTranslator {
 
     var invokedStatusGetter = false
     var invokedStatusGetterCount = 0
@@ -47,5 +47,20 @@ class GameSpy: TicTacToe & Resetable {
     func reset() {
         invokedReset = true
         invokedResetCount += 1
+    }
+
+    var invokedHumanReadable = false
+    var invokedHumanReadableCount = 0
+    var invokedHumanReadableParameters: Error?
+    var invokedHumanReadableParametersList = [Error]()
+    var stubbedHumanReadableReturnValue: String?
+
+    func humanReadable(error: Error) -> String {
+        invokedHumanReadable = true
+        invokedHumanReadableCount += 1
+        invokedHumanReadableParameters = error
+        invokedHumanReadableParametersList.append(error)
+
+        return stubbedHumanReadableReturnValue ?? ""
     }
 }

@@ -4,7 +4,7 @@
 import Foundation
 import TicTacToe
 
-class ReseatableTicTacToe: TicTacToe, Resetable {
+class ReseatableTicTacToe: TicTacToe, Resetable, TicTacToeErrorTranslator {
     private var game = Game()
 
     func play(at position: Int) throws {
@@ -21,5 +21,9 @@ class ReseatableTicTacToe: TicTacToe, Resetable {
 
     func reset() {
         game = .init()
+    }
+
+    func humanReadable(error: Error) -> String {
+        game.humanReadable(error: error)
     }
 }

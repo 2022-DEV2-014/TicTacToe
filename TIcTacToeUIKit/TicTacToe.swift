@@ -13,3 +13,7 @@ protocol TicTacToe {
 protocol Resetable {
     func reset()
 }
+
+protocol TicTacToeErrorTranslator {
+    func humanReadable(error: Error) -> String
+}
