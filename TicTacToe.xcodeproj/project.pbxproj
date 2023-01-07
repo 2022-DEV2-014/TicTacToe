@@ -38,6 +38,7 @@
 		5BADB8FB296887B900AB03B8 /* TicTacToe.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		5BADB90029688DAB00AB03B8 /* CompositionRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB8FF29688DAB00AB03B8 /* CompositionRoot.swift */; };
 		5BADB902296895E900AB03B8 /* TicTacToePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB901296895E900AB03B8 /* TicTacToePresenter.swift */; };
+		5BADB904296973EE00AB03B8 /* GameSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BADB903296973EE00AB03B8 /* GameSpy.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +139,7 @@
 		5BADB8F82968836100AB03B8 /* ReseatableTicTacToeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReseatableTicTacToeTests.swift; sourceTree = "<group>"; };
 		5BADB8FF29688DAB00AB03B8 /* CompositionRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompositionRoot.swift; sourceTree = "<group>"; };
 		5BADB901296895E900AB03B8 /* TicTacToePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicTacToePresenter.swift; sourceTree = "<group>"; };
+		5BADB903296973EE00AB03B8 /* GameSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				5BADB8F82968836100AB03B8 /* ReseatableTicTacToeTests.swift */,
+				5BADB903296973EE00AB03B8 /* GameSpy.swift */,
 			);
 			path = Adapter;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5BADB8F92968836100AB03B8 /* ReseatableTicTacToeTests.swift in Sources */,
+				5BADB904296973EE00AB03B8 /* GameSpy.swift in Sources */,
 				5B4DBFA22955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift in Sources */,
 				5BADB8EA2968354D00AB03B8 /* UIButton+TestHelper.swift in Sources */,
 				5BADB902296895E900AB03B8 /* TicTacToePresenter.swift in Sources */,
