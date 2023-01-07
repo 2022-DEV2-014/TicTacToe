@@ -14,11 +14,7 @@ class TicTacToePresenter {
     func userPlayedAt(position: Int) {
         do {
             try game.play(at: position)
-            display?.updateBoard(tokens: [
-                "X","O","",
-                "" ,"" ,"X",
-                "O","X","",
-            ])
+            display?.updateBoard(tokens: game.boardRepresentation)
         } catch {
             let description = game.humanReadable(error: error)
             display?.showError(message: description)

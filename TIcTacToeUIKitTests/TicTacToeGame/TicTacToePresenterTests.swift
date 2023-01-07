@@ -24,6 +24,11 @@ final class TicTacToePresenterTests: XCTestCase {
         let display = GameDisplaySpy()
         let sut = TicTacToePresenter(game: game)
         sut.display = display
+        game.stubbedBoardRepresentation = [
+            "X","O","",
+            "" ,"" ,"X",
+            "O","X","",
+        ]
 
         sut.userPlayedAt(position: 8)
 

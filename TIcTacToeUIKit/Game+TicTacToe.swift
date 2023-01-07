@@ -13,6 +13,10 @@ extension Game: TicTacToe {
         currentState != .ready
     }
 
+    var boardRepresentation: [String] {
+        board.board.map(\.?.token).compactMap { $0 ?? "" }
+    }
+
     func play(at position: Int) throws {
         let stride = 3
 
@@ -21,6 +25,7 @@ extension Game: TicTacToe {
 
         try play(at: (row: row, col: col))
     }
+    
 }
 
 extension Game: TicTacToeErrorTranslator {

@@ -63,4 +63,14 @@ class GameSpy: TicTacToe & Resetable & TicTacToeErrorTranslator {
 
         return stubbedHumanReadableReturnValue ?? ""
     }
+
+    var invokedBoardRepresentationGetter = false
+    var invokedBoardRepresentationGetterCount = 0
+    var stubbedBoardRepresentation: [String] = Array(repeating: "", count: 9)
+
+    var boardRepresentation: [String] {
+        invokedBoardRepresentationGetter = true
+        invokedBoardRepresentationGetterCount += 1
+        return stubbedBoardRepresentation
+    }
 }

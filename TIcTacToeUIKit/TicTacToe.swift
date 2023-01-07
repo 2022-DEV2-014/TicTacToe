@@ -4,10 +4,11 @@
 import Foundation
 
 protocol TicTacToe {
-    func play(at position: Int) throws
-
     var status: String { get }
     var started: Bool { get }
+    var boardRepresentation: [String] { get }
+
+    func play(at position: Int) throws
 }
 
 protocol Resetable {

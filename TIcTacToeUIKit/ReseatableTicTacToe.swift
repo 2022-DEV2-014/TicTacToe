@@ -19,6 +19,10 @@ class ReseatableTicTacToe: TicTacToe, Resetable, TicTacToeErrorTranslator {
         game.started
     }
 
+    var boardRepresentation: [String] {
+        game.boardRepresentation
+    }
+
     func reset() {
         game = .init()
     }
