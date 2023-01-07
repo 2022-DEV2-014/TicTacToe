@@ -14,15 +14,6 @@ final class TicTacToeViewControllerTests: XCTestCase {
         XCTAssertEqual(sut.buttons.count, 9)
     }
 
-    func test_board_has9IdentifiedButtonsFrom1to9() {
-        let sut = TicTacToeViewController()
-
-        sut.loadViewIfNeeded()
-
-        let buttonsId = sut.buttons.map(\.currentTitle)
-        XCTAssertEqual(buttonsId, Array(1...9).map(\.description))
-    }
-
     func test_board_buttonsAreTappable() {
         let sut = TicTacToeViewController()
         var tappedButtons = [Int]()

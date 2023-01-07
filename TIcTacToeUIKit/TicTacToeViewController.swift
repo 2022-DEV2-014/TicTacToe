@@ -65,7 +65,6 @@ class TicTacToeViewController: UIViewController {
             }
             boardItem.addAction(tapAction, for: .touchUpInside)
             boardItem.backgroundColor = .gray
-            boardItem.setTitle(index.description, for: .normal)
 
             return boardItem
         }
