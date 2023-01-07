@@ -6,10 +6,24 @@ import UIKit
 
 extension TicTacToeViewController: GameDisplay {
     func displayState(message: String) {
-        print(message)
+        guard !message.isEmpty else {
+            return
+        }
+        
+        displayMessageInAlert(message: message)
     }
 
     func showError(message: String) {
+        displayMessageInAlert(message: message)
+    }
+
+    func updateBoard(tokens: [String]) {
+        tokens.enumerated().forEach { index, token in
+            place(title: token, at: index)
+        }
+    }
+
+    private func displayMessageInAlert(message: String) {
         let dialogMessage = UIAlertController(
             title: "Tic Tac Toe",
             message: message,
@@ -21,11 +35,5 @@ extension TicTacToeViewController: GameDisplay {
         dialogMessage.addAction(ok)
 
         self.present(dialogMessage, animated: true, completion: nil)
-    }
-
-    func updateBoard(tokens: [String]) {
-        tokens.enumerated().forEach { index, token in
-            place(title: token, at: index)
-        }
     }
 }
