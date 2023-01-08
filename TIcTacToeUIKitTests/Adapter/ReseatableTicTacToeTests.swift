@@ -7,8 +7,7 @@ import Foundation
 
 class ReseatableTicTacToeTests: XCTestCase {
     func test_game_isResetted() throws {
-        let sut = ReseatableTicTacToe()
-        trackForMemoryLeaks(sut)
+        let sut = makeSut()
 
         XCTAssertFalse(sut.started)
 
@@ -22,16 +21,14 @@ class ReseatableTicTacToeTests: XCTestCase {
     }
 
     func test_playInInvalidPosition_throwsAnError() throws {
-        let sut = ReseatableTicTacToe()
-        trackForMemoryLeaks(sut)
+        let sut = makeSut()
 
         XCTAssertThrowsError(try sut.play(at: 9))
         XCTAssertThrowsError(try sut.play(at: -1))
     }
 
     func test_playInDuplicatedPosition_throwsAnErrorThatIsHumanlyReadable() throws {
-        let sut = ReseatableTicTacToe()
-        trackForMemoryLeaks(sut)
+        let sut = makeSut()
 
         do {
             try sut.play(at: 8)
@@ -44,8 +41,7 @@ class ReseatableTicTacToeTests: XCTestCase {
     }
 
     func test_playInInvalidPosition_throwsAnErrorThatIsHumanlyReadable() throws {
-        let sut = ReseatableTicTacToe()
-        trackForMemoryLeaks(sut)
+        let sut = makeSut()
 
         do {
             try sut.play(at: 9)
@@ -57,8 +53,7 @@ class ReseatableTicTacToeTests: XCTestCase {
     }
 
     func test_playAfterEndOfGame_throwsAnErrorThatIsHumanlyReadable() throws {
-        let sut = ReseatableTicTacToe()
-        trackForMemoryLeaks(sut)
+        let sut = makeSut()
 
         try sut.play(at: 0)
         try sut.play(at: 3)
@@ -73,5 +68,15 @@ class ReseatableTicTacToeTests: XCTestCase {
             let message = sut.humanReadable(error: error)
             XCTAssertEqual(message, "The game has ended, no new moves are allowed")
         }
+    }
+
+    //MARK - Helpers
+
+    private func makeSut() -> ReseatableTicTacToe {
+        let sut = ReseatableTicTacToe()
+
+        trackForMemoryLeaks(sut)
+
+        return sut
     }
 }
