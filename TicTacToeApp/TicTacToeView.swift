@@ -34,7 +34,7 @@ struct TicTacToeView: View {
 
             Label(game.status, systemImage: "gamecontroller")
                 .font(.title)
-                .foregroundColor(.white)
+                .foregroundColor(.blue)
                 .multilineTextAlignment(.center)
                 .padding()
 
