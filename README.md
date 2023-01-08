@@ -1,3 +1,5 @@
+![TicTacToe Logo](TicTacToeApp/Assets.xcassets/AppIcon.appiconset/Logo%20TicTacToe%20128.png)
+
 # TicTacToe (TDD-KATA)
 
 This project is a KATA developed using Test Driven Development (TDD) techniques and some learnings from Domain Driven Design (DDD). It consists of a Tic Tac Toe game implemented in Swift, with a visual interface in SwiftUI, as well as a simple UIKit implementation for iOS.
@@ -9,6 +11,18 @@ This project is a KATA developed using Test Driven Development (TDD) techniques 
 To use the interface, simply build and run the project in Xcode. You can then play the game by tapping on the tiles on the board to place your moves. The game will automatically switch between players and display a message when the game is won or ends in a draw.
 
 To reset the game, you can tap the reset button at the bottom of the screen.
+
+<p align="center">
+<img width="30%" alt="Screenshot New Game!" src="Screenshots/ready.png">
+<img width="30%" alt="Screenshot Ongoing!" src="Screenshots/ongoing.png">
+<img width="30%" alt="Screenshot Won!" src="Screenshots/won.png">
+</p>
+
+<p align="center">
+<img width="30%" alt="Screenshot New Game!" src="Screenshots/uikit_ready.png">
+<img width="30%" alt="Screenshot Ongoing!" src="Screenshots/uikit_ongoing.png">
+<img width="30%" alt="Screenshot Won!" src="Screenshots/uikit_won.png">
+</p>
 
 ## Approach to Solving the Problem
 The approach to solving this problem was to first implement the game engine using TDD. This allowed for a clear separation of concerns and a solid foundation for the visual interface of the game.
