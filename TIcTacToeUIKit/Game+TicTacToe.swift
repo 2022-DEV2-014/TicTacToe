@@ -43,9 +43,7 @@ extension Game: TicTacToeErrorTranslator {
 extension Game.State: CustomStringConvertible {
     public var description: String {
         switch self {
-        case .ready:
-            return "Press one circle to start"
-        case .onGoing:
+        case .ready, .onGoing:
             return ""
         case .draw:
             return "It's a Draw"
