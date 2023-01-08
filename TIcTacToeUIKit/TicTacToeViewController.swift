@@ -71,11 +71,11 @@ class TicTacToeViewController: UIViewController {
     }
 
     private func createBoard() -> [UIButton] {
-        (1...9).map { index in
+        (0..<9).map { index in
             let boardItem = UIButton()
 
             let tapAction = UIAction(title: "Tap") { (action) in
-                self.presenter.userPlayedAt(position: index - 1)
+                self.presenter.userPlayedAt(position: index)
             }
             boardItem.addAction(tapAction, for: .touchUpInside)
             boardItem.backgroundColor = .gray
@@ -93,7 +93,5 @@ class TicTacToeViewController: UIViewController {
         button.setTitle("Reset", for: .normal)
         return button
     }
-
-
 }
 
