@@ -22,6 +22,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
             .map(\.frame)
             .filter { $0 == .zero }
 
+        removeFromWindow(sut)
         XCTAssertTrue(zeroFrames.isEmpty)
     }
 
@@ -93,6 +94,14 @@ final class TicTacToeViewControllerTests: XCTestCase {
             return
         }
         XCTAssertEqual(alert.message, "Error Random")
+
+        let wait = expectation(description: "Wait for dismissal")
+        alert.dismiss(animated: false) {
+            wait.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        removeFromWindow(sut)
     }
 
     func test_boardIntegration_resetRequestIsSentAfterTapOnIt() {
@@ -110,11 +119,13 @@ final class TicTacToeViewControllerTests: XCTestCase {
         makeVisible(sut)
 
         XCTAssertNotEqual(sut.resetButton.frame, .zero)
+
+        removeFromWindow(sut)
     }
 
     //MARK - Helpers
 
-    func makeSut(attachPresenter: Bool = true) -> (TicTacToeViewController, GameSpy) {
+    func makeSut(attachPresenter: Bool = true, file: StaticString = #filePath, line: UInt = #line) -> (TicTacToeViewController, GameSpy) {
         let gameSpy = GameSpy()
         let presenter = TicTacToePresenter(game: gameSpy)
         let sut = TicTacToeViewController(presenter: presenter)
@@ -123,10 +134,15 @@ final class TicTacToeViewControllerTests: XCTestCase {
             presenter.display = sut
         }
 
+        trackForMemoryLeaks(sut, file: file, line: line)
+        trackForMemoryLeaks(presenter, file: file, line: line)
+        trackForMemoryLeaks(gameSpy, file: file, line: line)
+
         return (sut, gameSpy)
     }
 
-    func makeVisible(_ sut: TicTacToeViewController) {
+    private func makeVisible(_ sut: TicTacToeViewController) {
+        
         let scene = UIApplication.shared.connectedScenes.first
         guard let windowScene = (scene as? UIWindowScene) else {
             XCTFail("Can't find a window scene")
@@ -140,4 +156,18 @@ final class TicTacToeViewControllerTests: XCTestCase {
         RunLoop.main.run(until: .now)
     }
 
+    private func removeFromWindow(_ sut: TicTacToeViewController) {
+
+        RunLoop.main.run(until: .now)
+
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .forEach { scene in
+                scene.windows.forEach { window in
+                    window.rootViewController = nil
+                }
+            }
+
+        RunLoop.main.run(until: .now)
+    }
 }

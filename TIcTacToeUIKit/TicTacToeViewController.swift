@@ -74,8 +74,8 @@ class TicTacToeViewController: UIViewController {
         (0..<9).map { index in
             let boardItem = UIButton()
 
-            let tapAction = UIAction(title: "Tap") { (action) in
-                self.presenter.userPlayedAt(position: index)
+            let tapAction = UIAction(title: "Tap") { [weak presenter] _ in
+                presenter?.userPlayedAt(position: index)
             }
             boardItem.addAction(tapAction, for: .touchUpInside)
             boardItem.backgroundColor = .gray

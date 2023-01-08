@@ -76,6 +76,10 @@ final class TicTacToePresenterTests: XCTestCase {
         let display = GameDisplaySpy()
         sut.display = display
 
+        trackForMemoryLeaks(sut)
+        trackForMemoryLeaks(display)
+        trackForMemoryLeaks(game)
+
         return (sut, game, display)
     }
 }

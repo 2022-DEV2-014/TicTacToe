@@ -34,6 +34,6 @@ extension TicTacToeViewController: GameDisplay {
 
         dialogMessage.addAction(ok)
 
-        self.present(dialogMessage, animated: true, completion: nil)
+        present(dialogMessage, animated: true, completion: nil)
     }
 }
