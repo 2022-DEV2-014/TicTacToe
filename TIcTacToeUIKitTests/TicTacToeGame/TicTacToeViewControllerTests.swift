@@ -7,7 +7,7 @@ import XCTest
 final class TicTacToeViewControllerTests: XCTestCase {
 
     func test_board_has9Buttons() {
-        let sut = TicTacToeViewController(presenter: TicTacToePresenter(game: GameSpy()))
+        let (sut, _) = makeSut(attachPresenter: false)
 
         sut.loadViewIfNeeded()
 
@@ -15,26 +15,19 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_board_buttonsAreArranged() {
-        let sut = TicTacToeViewController(presenter: TicTacToePresenter(game: GameSpy()))
-        let scene = UIApplication.shared.connectedScenes.first
-        guard let windowScene = (scene as? UIWindowScene) else {
-            XCTFail("Can't find a window scene")
-            return
-        }
-        let mainWindow = windowScene.windows.first(where: { $0.isKeyWindow })
-        mainWindow?.rootViewController = sut
-        mainWindow?.makeKeyAndVisible()
+        let (sut, _) = makeSut(attachPresenter: false)
+        makeVisible(sut)
 
-        sut.loadViewIfNeeded()
-        RunLoop.main.run(until: .now)
-
-        let zeroFrames = sut.buttons.map(\.frame).filter { $0 == .zero }
+        let zeroFrames = sut.buttons
+            .map(\.frame)
+            .filter { $0 == .zero }
 
         XCTAssertTrue(zeroFrames.isEmpty)
     }
 
     func test_placingAnItemInBoard_happensAtIntendedLocation() {
-        let sut = TicTacToeViewController(presenter: TicTacToePresenter(game: GameSpy()))
+        let (sut, _) = makeSut(attachPresenter: false)
+
         sut.loadViewIfNeeded()
 
         sut.place(title: "X", at: 4)
@@ -43,9 +36,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_boardIntegration_buttonsAreTappableAndThoseTapsReachTheGameEngine() {
-        let gameSpy = GameSpy()
-        let presenter = TicTacToePresenter(game: gameSpy)
-        let sut = TicTacToeViewController(presenter: presenter)
+        let (sut, gameSpy) = makeSut(attachPresenter: false)
 
         sut.loadViewIfNeeded()
 
@@ -57,10 +48,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_boardIntegration_whenViewIsReadyTheBoardUpdateIsTriggered() {
-        let gameSpy = GameSpy()
-        let presenter = TicTacToePresenter(game: gameSpy)
-        let sut = TicTacToeViewController(presenter: presenter)
-        presenter.display = sut
+        let (sut, gameSpy) = makeSut()
 
         sut.loadViewIfNeeded()
 
@@ -68,10 +56,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_boardIntegration_boardIsUpdatedAfterEachTap() {
-        let gameSpy = GameSpy()
-        let presenter = TicTacToePresenter(game: gameSpy)
-        let sut = TicTacToeViewController(presenter: presenter)
-        presenter.display = sut
+        let (sut, gameSpy) = makeSut()
 
         sut.loadViewIfNeeded()
 
@@ -83,37 +68,23 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_aReset_clearsAllTitles() {
-        let gameSpy = GameSpy()
-        let presenter = TicTacToePresenter(game: gameSpy)
-        let sut = TicTacToeViewController(presenter: presenter)
-        presenter.display = sut
+        let (sut, _) = makeSut()
+
         sut.loadViewIfNeeded()
         sut.place(title: "X", at: 4)
 
         sut.reset()
 
-        let titles = sut.buttons.compactMap(\.currentTitle)
+        let titles = sut.buttons
+            .compactMap(\.currentTitle)
         let emptyTitles = titles.filter(\.isEmpty)
 
         XCTAssertEqual(emptyTitles.count, 9)
     }
 
     func test_showError_displaysAnAlert() {
-        let gameSpy = GameSpy()
-        let presenter = TicTacToePresenter(game: gameSpy)
-        let sut = TicTacToeViewController(presenter: presenter)
-        presenter.display = sut
-
-        let scene = UIApplication.shared.connectedScenes.first
-        guard let windowScene = (scene as? UIWindowScene) else {
-            XCTFail("Can't find a window scene")
-            return
-        }
-        let mainWindow = windowScene.windows.first(where: { $0.isKeyWindow })
-        mainWindow?.rootViewController = sut
-        mainWindow?.makeKeyAndVisible()
-
-        sut.loadViewIfNeeded()
+        let (sut, _) = makeSut(attachPresenter: false)
+        makeVisible(sut)
 
         sut.showError(message: "Error Random")
 
@@ -125,10 +96,7 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_boardIntegration_resetRequestIsSentAfterTapOnIt() {
-        let gameSpy = GameSpy()
-        let presenter = TicTacToePresenter(game: gameSpy)
-        let sut = TicTacToeViewController(presenter: presenter)
-        presenter.display = sut
+        let (sut, gameSpy) = makeSut()
 
         sut.loadViewIfNeeded()
 
@@ -138,7 +106,27 @@ final class TicTacToeViewControllerTests: XCTestCase {
     }
 
     func test_reset_isVisibleAndArranged() {
-        let sut = TicTacToeViewController(presenter: TicTacToePresenter(game: GameSpy()))
+        let (sut, _) = makeSut(attachPresenter: false)
+        makeVisible(sut)
+
+        XCTAssertNotEqual(sut.resetButton.frame, .zero)
+    }
+
+    //MARK - Helpers
+
+    func makeSut(attachPresenter: Bool = true) -> (TicTacToeViewController, GameSpy) {
+        let gameSpy = GameSpy()
+        let presenter = TicTacToePresenter(game: gameSpy)
+        let sut = TicTacToeViewController(presenter: presenter)
+
+        if attachPresenter {
+            presenter.display = sut
+        }
+
+        return (sut, gameSpy)
+    }
+
+    func makeVisible(_ sut: TicTacToeViewController) {
         let scene = UIApplication.shared.connectedScenes.first
         guard let windowScene = (scene as? UIWindowScene) else {
             XCTFail("Can't find a window scene")
@@ -150,8 +138,6 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
         sut.loadViewIfNeeded()
         RunLoop.main.run(until: .now)
-
-        XCTAssertNotEqual(sut.resetButton.frame, .zero)
     }
 
 }
