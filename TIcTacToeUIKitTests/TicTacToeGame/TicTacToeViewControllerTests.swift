@@ -16,14 +16,14 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
     func test_board_buttonsAreArranged() {
         let (sut, _) = makeSut(attachPresenter: false)
-        makeVisible(sut)
+        
+        whilePresentedInScreenAndVisible(sut) {
+            let zeroFrames = sut.buttons
+                .map(\.frame)
+                .filter { $0 == .zero }
 
-        let zeroFrames = sut.buttons
-            .map(\.frame)
-            .filter { $0 == .zero }
-
-        removeFromWindow(sut)
-        XCTAssertTrue(zeroFrames.isEmpty)
+            XCTAssertTrue(zeroFrames.isEmpty)
+        }
     }
 
     func test_placingAnItemInBoard_happensAtIntendedLocation() {
@@ -85,17 +85,17 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
     func test_showError_displaysAnAlert() {
         let (sut, _) = makeSut(attachPresenter: false)
-        makeVisible(sut)
 
-        sut.showError(message: "Error Random")
+        whilePresentedInScreenAndVisible(sut) {
+            sut.showError(message: "Error Random")
 
-        guard let alert = captureAndDismissAlert(presentedBy: sut) else {
-            XCTFail("When an error occurs, an alert is expected to be shown")
-            return
+            guard let alert = captureAndDismissAlert(presentedBy: sut) else {
+                XCTFail("When an error occurs, an alert is expected to be shown")
+                return
+            }
+
+            XCTAssertEqual(alert.message, "Error Random")
         }
-        removeFromWindow(sut)
-
-        XCTAssertEqual(alert.message, "Error Random")
     }
 
     func test_boardIntegration_resetRequestIsSentAfterTapOnIt() {
@@ -110,11 +110,10 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
     func test_reset_isVisibleAndArranged() {
         let (sut, _) = makeSut(attachPresenter: false)
-        makeVisible(sut)
 
-        XCTAssertNotEqual(sut.resetButton.frame, .zero)
-
-        removeFromWindow(sut)
+        whilePresentedInScreenAndVisible(sut) {
+            XCTAssertNotEqual(sut.resetButton.frame, .zero)
+        }
     }
 
     //MARK - Helpers
@@ -133,48 +132,5 @@ final class TicTacToeViewControllerTests: XCTestCase {
         trackForMemoryLeaks(gameSpy, file: file, line: line)
 
         return (sut, gameSpy)
-    }
-
-    private func captureAndDismissAlert(presentedBy sut: UIViewController) -> UIAlertController? {
-        guard let alert = sut.presentedViewController as? UIAlertController else {
-            return nil
-        }
-        let wait = expectation(description: "Wait for dismissal")
-        alert.dismiss(animated: false) {
-            wait.fulfill()
-        }
-        waitForExpectations(timeout: 5)
-
-        return alert
-    }
-
-    private func makeVisible(_ sut: TicTacToeViewController) {
-        
-        let scene = UIApplication.shared.connectedScenes.first
-        guard let windowScene = (scene as? UIWindowScene) else {
-            XCTFail("Can't find a window scene")
-            return
-        }
-        let mainWindow = windowScene.windows.first(where: { $0.isKeyWindow })
-        mainWindow?.rootViewController = sut
-        mainWindow?.makeKeyAndVisible()
-
-        sut.loadViewIfNeeded()
-        RunLoop.main.run(until: .now)
-    }
-
-    private func removeFromWindow(_ sut: TicTacToeViewController) {
-
-        RunLoop.main.run(until: .now)
-
-        UIApplication.shared.connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .forEach { scene in
-                scene.windows.forEach { window in
-                    window.rootViewController = nil
-                }
-            }
-
-        RunLoop.main.run(until: .now)
     }
 }
