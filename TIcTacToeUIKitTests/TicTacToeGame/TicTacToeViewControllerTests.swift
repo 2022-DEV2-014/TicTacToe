@@ -89,19 +89,13 @@ final class TicTacToeViewControllerTests: XCTestCase {
 
         sut.showError(message: "Error Random")
 
-        guard let alert = sut.presentedViewController as? UIAlertController else {
+        guard let alert = captureAndDismissAlert(presentedBy: sut) else {
             XCTFail("When an error occurs, an alert is expected to be shown")
             return
         }
-        XCTAssertEqual(alert.message, "Error Random")
-
-        let wait = expectation(description: "Wait for dismissal")
-        alert.dismiss(animated: false) {
-            wait.fulfill()
-        }
-        waitForExpectations(timeout: 5)
-
         removeFromWindow(sut)
+
+        XCTAssertEqual(alert.message, "Error Random")
     }
 
     func test_boardIntegration_resetRequestIsSentAfterTapOnIt() {
@@ -139,6 +133,19 @@ final class TicTacToeViewControllerTests: XCTestCase {
         trackForMemoryLeaks(gameSpy, file: file, line: line)
 
         return (sut, gameSpy)
+    }
+
+    private func captureAndDismissAlert(presentedBy sut: UIViewController) -> UIAlertController? {
+        guard let alert = sut.presentedViewController as? UIAlertController else {
+            return nil
+        }
+        let wait = expectation(description: "Wait for dismissal")
+        alert.dismiss(animated: false) {
+            wait.fulfill()
+        }
+        waitForExpectations(timeout: 5)
+
+        return alert
     }
 
     private func makeVisible(_ sut: TicTacToeViewController) {
