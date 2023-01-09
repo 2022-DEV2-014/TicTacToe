@@ -8,18 +8,21 @@ final class GameTests: XCTestCase {
 
     func test_playerX_alwaysGoesFirst() {
         let sut = Game()
+        trackForMemoryLeaks(sut)
 
         XCTAssertEqual(sut.currentPlayer, .x)
     }
 
     func test_gameStateIsReady_whenNotStarted() {
         let sut = Game()
+        trackForMemoryLeaks(sut)
 
         XCTAssertEqual(sut.currentState, .ready)
     }
 
     func test_gameStateIsOnGoing_whenStarted() {
         let sut = Game()
+        trackForMemoryLeaks(sut)
 
         try? sut.play(at: (row: 0, col: 0))
 
@@ -29,6 +32,7 @@ final class GameTests: XCTestCase {
 
     func test_playerToggles_afterEachPlay() {
         let sut = Game()
+        trackForMemoryLeaks(sut)
 
         try? sut.play(at: (row: 0, col: 0))
 
@@ -41,6 +45,7 @@ final class GameTests: XCTestCase {
 
     func test_playerDoesNotToggle_afterAnAttemptToPlayOnAnAlreadyOccupiedPosition() {
         let sut = Game()
+        trackForMemoryLeaks(sut)
 
         try? sut.play(at: (row: 0, col: 0))
 
@@ -61,6 +66,7 @@ final class GameTests: XCTestCase {
                x, x, o
             """)
         )
+        trackForMemoryLeaks(sut)
 
         XCTAssertEqual(sut.currentState, .draw)
     }
@@ -75,6 +81,7 @@ final class GameTests: XCTestCase {
                _, _, _
             """)
         )
+        trackForMemoryLeaks(sut)
 
         XCTAssertEqual(sut.currentState, .won(.x))
     }
@@ -89,6 +96,7 @@ final class GameTests: XCTestCase {
                _, _, x
             """)
         )
+        trackForMemoryLeaks(sut)
 
         XCTAssertEqual(sut.currentState, .won(.o))
     }
@@ -103,6 +111,7 @@ final class GameTests: XCTestCase {
                _, _, x
             """)
         )
+        trackForMemoryLeaks(sut)
 
         XCTAssertThrowsError(try sut.play(at: (row: 2, col: 0)), "If Game is Ended there is no movement possible")
     }

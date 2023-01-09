@@ -25,6 +25,7 @@
 		5B4DBF942955FD2700FF6CD7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B4DBF932955FD2700FF6CD7 /* Assets.xcassets */; };
 		5B4DBFA22955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B4DBFA12955FD2800FF6CD7 /* TicTacToeViewControllerTests.swift */; };
 		5B564012296B82DD00BA3C15 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B564011296B82DD00BA3C15 /* XCTestCase+MemoryLeakTracking.swift */; };
+		5B564013296B8FA200BA3C15 /* XCTestCase+MemoryLeakTracking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B564011296B82DD00BA3C15 /* XCTestCase+MemoryLeakTracking.swift */; };
 		5B76FA022950F8C200E3607C /* TicTacToe.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B76F9F92950F8C200E3607C /* TicTacToe.framework */; };
 		5B76FA072950F8C200E3607C /* GameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B76FA062950F8C200E3607C /* GameTests.swift */; };
 		5B76FA082950F8C200E3607C /* TicTacToe.h in Headers */ = {isa = PBXBuildFile; fileRef = 5B76F9FC2950F8C200E3607C /* TicTacToe.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -646,6 +647,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5B4DBF322951058700FF6CD7 /* GameBoardTests.swift in Sources */,
+				5B564013296B8FA200BA3C15 /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				5B4DBF3A2953117900FF6CD7 /* GameBoard+BoardRepresentation.swift in Sources */,
 				5B76FA072950F8C200E3607C /* GameTests.swift in Sources */,
 			);

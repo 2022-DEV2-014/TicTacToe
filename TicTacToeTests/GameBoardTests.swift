@@ -8,12 +8,14 @@ final class GameBoardTests: XCTestCase {
 
     func test_board_startsEmpty() {
         let sut = GameBoard()
-
+        trackForMemoryLeaks(sut)
+        
         XCTAssertTrue(sut.isEmpty)
     }
 
     func test_aPlayersTurn_isStoredInTheBoard() throws {
         let sut = GameBoard()
+        trackForMemoryLeaks(sut)
 
         try sut.play(.x, on: (row: 0, col: 1))
 
@@ -22,12 +24,14 @@ final class GameBoardTests: XCTestCase {
 
     func test_anInvalidMove_throwsAnError() throws {
         let sut = GameBoard()
+        trackForMemoryLeaks(sut)
 
         XCTAssertThrowsError(try sut.play(.x, on: (row: 3, col: 1)))
     }
 
     func test_aPlayersTurn_isStoredInTheRightPosition() throws {
         let sut = GameBoard()
+        trackForMemoryLeaks(sut)
 
         try sut.play(.x, on: (row: 1, col: 0))
         try sut.play(.o, on: (row: 1, col: 1))
@@ -43,6 +47,7 @@ final class GameBoardTests: XCTestCase {
 
     func test_aPlayersTurn_cantBePlacedInAnAlreadyUsedPosition() throws {
         let sut = GameBoard()
+        trackForMemoryLeaks(sut)
 
         try sut.play(.x, on: (row: 1, col: 0))
 
@@ -61,7 +66,7 @@ final class GameBoardTests: XCTestCase {
             _, _, _,
             _, _, _
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, nil)
     }
 
@@ -72,7 +77,7 @@ final class GameBoardTests: XCTestCase {
             _, _, _,
             _, _, _
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, .x)
     }
 
@@ -83,7 +88,7 @@ final class GameBoardTests: XCTestCase {
             x, x, x,
             _, _, _
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, .x)
     }
 
@@ -94,7 +99,7 @@ final class GameBoardTests: XCTestCase {
             _, _, _,
             o, o, o
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, .o)
     }
 
@@ -105,7 +110,7 @@ final class GameBoardTests: XCTestCase {
             x, _, _,
             x, _, _
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, .x)
     }
 
@@ -116,7 +121,7 @@ final class GameBoardTests: XCTestCase {
             _, x, _,
             _, x, _
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, .x)
     }
 
@@ -127,7 +132,7 @@ final class GameBoardTests: XCTestCase {
             _, _, o,
             _, _, o
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, .o)
     }
 
@@ -138,7 +143,7 @@ final class GameBoardTests: XCTestCase {
             _, o, _,
             _, _, o
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, .o)
     }
 
@@ -149,7 +154,7 @@ final class GameBoardTests: XCTestCase {
             _, o, _,
             o, _, _
         """)
-
+        trackForMemoryLeaks(sut)
         XCTAssertEqual(sut.winner, .o)
     }
 
@@ -160,6 +165,7 @@ final class GameBoardTests: XCTestCase {
             x, o, o,
             x, o, x
         """)
+        trackForMemoryLeaks(sut)
 
         XCTAssertEqual(sut.winner, nil)
         XCTAssertTrue(sut.isFull)
